@@ -1,15 +1,6 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # If you come from bash you might have to change your $PATH.
-expadd following plugins in theort PATH=$HOME/bin:/usr/local/bin:$HOME/.local/share/gem/ruby/3.0.0/bin:$HOME/.local/bin:$HOME/go/bin:$PATH
-#export PAGER=most
-export LESS='R --use-color -Dd+r$Du+b'
-export MANPAGER="less -R --use-color -Dd+r -Du+b"
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -17,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -34,7 +25,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
-zstyle ':omz:update' mode auto      # update automatically without asking
+zstyle ':omz:update' mode auto # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
@@ -50,7 +41,7 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -79,7 +70,44 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colorize zsh-navigation-tools zsh-interactive-cd zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git colored-man-pages command-not-found pip themes zsh-interactive-cd zsh-syntax-highlighting zsh-autosuggestions)
+
+# FZF settings
+export FZF_BASE="$HOME/.fzf"
+export FZF_DEFAULT_COMMAND='fd --hidden --color=always'
+export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --border --ansi'
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+# Preview file content using bat (https://github.com/sharkdp/bat)
+export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {}' --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d"
+# Print tree structure in the preview window
+export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
+
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+	fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+	fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+
+# Advanced customization of fzf options via _fzf_comprun function
+# - The first argument to the function is the name of the command.
+# - You should make sure to pass the rest of the arguments to fzf.
+_fzf_comprun() {
+	local command=$1
+	shift
+
+	case "$command" in
+	cd) fzf --preview 'tree -C {} | head -200' "$@" ;;
+	export | unset) fzf --preview "eval 'echo \$'{}" "$@" ;;
+	ssh) fzf --preview 'dig {}' "$@" ;;
+	*) fzf --preview 'bat -n --color=always {}' "$@" ;;
+	esac
+}
 
 source $ZSH/oh-my-zsh.sh
 
@@ -88,7 +116,7 @@ source $ZSH/oh-my-zsh.sh
 export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -108,29 +136,10 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+# map exa commands to normal ls commands
+alias ll="exa -l -g --icons"
+alias ls="exa --icons"
+alias lt="exa --tree --icons -a -I '.git|__pycache__|.mypy_cache|.ipynb_checkpoints'"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# colorls config
-source $(dirname $(gem which colorls))/tab_complete.sh
-
-if [ -x "$(command -v colorls)" ]; then
-	alias ls="colorls"
-	alias la="colorls -lA --sd"
-fi
-
-#LFCD bindings
-LFCD=~/.config/lf/lfcd.sh
-if [ -f "$LFCD" ]; then
-	source "$LFCD"
-fi
-
-#bind ctrl+o to open lfcd
-bindkey -s ^o 'lfcd\n'
-
-#alacritty color-scheme alias
-if [ -x "$(command -v alacritty-colorscheme)" ]; then
-	alias ala-col="alacritty-colorscheme"
-fi
-
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
