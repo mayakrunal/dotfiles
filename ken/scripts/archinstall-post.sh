@@ -26,13 +26,13 @@ sudo pacman -S xorg
 
 #install minial kde & wayland session as well
 #take pipewire-jack,wireplumber,phonon-qt-vlc
-sudo pacman -S plasma
+sudo pacman -S plasma plasma-wayland-session
 
 #enable the sddm service at systemd
 sudo systemctl enable sddm.service
 
 #kde applications
-sudo pacman -S firefox ark dolphin dolphin-plugins ffmpegthumbs filelight gwenview kate kdenlive kfind kgpg khelpcenter kleopatra kmag knotes konsole ksystemlog okular partitionmanager print-manager skanpage spectacle yakuake system-config-printer firewalld
+sudo pacman -S firefox ark dolphin dolphin-plugins ffmpegthumbs filelight gwenview kate kdenlive kfind kgpg khelpcenter kleopatra kmag knotes konsole ksystemlog okular partitionmanager print-manager skanpage spectacle yakuake system-config-printer firewalld kwallet-pam kwalletmanager ksshaskpass
 
 #enable the firewall
 sudo systemctl enable firewalld.service
@@ -46,3 +46,9 @@ nvim .bash_profile #add following
 
 #install the fonts
 sudo pacman -S adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts
+
+#install astrill vpn
+yay -S astrill gtk2 #astill still uses gtk2
+
+#install visual studio code
+yay -S visual-studio-code-bin

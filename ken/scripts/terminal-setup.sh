@@ -1,6 +1,6 @@
 #!/bin/sh
 #install zsh & zsh-completions
-sudo pacman -S zsh zsh-completions python-pip ttf-hack-nerd bat fd exa
+sudo pacman -S zsh zsh-completions ttf-hack-nerd bat fd exa
 
 #install the oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
