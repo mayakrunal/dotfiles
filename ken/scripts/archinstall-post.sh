@@ -39,7 +39,7 @@ sudo systemctl enable firewalld.service
 
 #input method
 sudo pacman -S fcitx5-im fcitx5-chinese-addons fcitx5-configtool
-nvim .bashrc #add following
+nvim .bash_profile #add following
 #GTK_IM_MODULE=fcitx
 #QT_IM_MODULE=fcitx
 #XMODIFIERS=@im=fcitx
