@@ -52,3 +52,6 @@ yay -S astrill gtk2 #astill still uses gtk2
 
 #install visual studio code
 yay -S visual-studio-code-bin
+
+#install alacritty
+sudo pacman -S alacritty

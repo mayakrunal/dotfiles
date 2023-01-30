@@ -20,3 +20,6 @@ sudo pacman -S pipewire pipewire-alsa pipewire-jack pipewire-pulse gst-plugin-pi
 systemctl enable --user pipewire
 systemctl enable --user pipewire-pulse
 systemctl enable --user wireplumber
+
+#install printer driver (i have epson printer)
+yay -S epson-inkjet-printer-escpr
