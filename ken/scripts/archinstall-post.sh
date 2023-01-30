@@ -55,3 +55,6 @@ yay -S visual-studio-code-bin
 
 #install alacritty
 sudo pacman -S alacritty
+
+#install ventoy (if you want to make a usb live disk)
+yay -S ventoy-bin
