@@ -18,4 +18,4 @@ sudo pacman -S wine wine-gecko wine-mono winetricks #to not donwload the package
 sudo pacman -S ninja meson vulkan-headers
 
 #setup mongohud for the overlay
-yay -S mangohud-git lib32-mangohud-git #export MANGOHUD=1 , export MANGOHUD_DLSYM=1 into your bash profile
+yay -S mangohud-git lib32-mangohud-git proton-ge-custom-bin #export MANGOHUD=1 , export MANGOHUD_DLSYM=1 into your bash profile
