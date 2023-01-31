@@ -23,3 +23,8 @@ systemctl enable --user wireplumber
 
 #install printer driver (i have epson printer)
 yay -S epson-inkjet-printer-escpr
+
+#touchpad gestures
+yay -S wmctrl xdotool libinput-gestures
+sudo gpasswd -a $USER input
+libinput-gestures-setup autostart start
