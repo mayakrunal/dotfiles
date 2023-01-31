@@ -81,7 +81,7 @@ nvim /etc/hosts
 passwd #vm@123
 
 #remaining essential tools
-pacman -S grub grub-btrfs efibootmgr base-devel linux-headers os-prober reflector git mtools
+pacman -S grub grub-btrfs inotify-tools efibootmgr base-devel linux-headers os-prober reflector git mtools
 
 #add btrfs moudle to mkinitcpio
 nvim /etc/mkinitcpi.conf
