@@ -58,3 +58,6 @@ sudo pacman -S alacritty
 
 #install ventoy (if you want to make a usb live disk)
 yay -S ventoy-bin
+
+#install libreoffice
+sudo pacman -S libreoffice-fresh gimp inkscape
