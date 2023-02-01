@@ -49,3 +49,5 @@ chown :wheel .snapshots
 
 #python script to rollback above layout system
 yay -S snapper-rollback
+
+sudo nvim etc/snapper-rollback.conf
