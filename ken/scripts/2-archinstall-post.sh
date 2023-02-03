@@ -60,4 +60,7 @@ sudo pacman -S alacritty
 yay -S ventoy-bin
 
 #install libreoffice
-sudo pacman -S libreoffice-fresh gimp inkscape
+sudo pacman -S libreoffice-fresh hunspell hunspell-en_us gimp inkscape
+
+#install pamac and octopi
+yay -S octopi octopi-notifier-frameworks pamac-all
