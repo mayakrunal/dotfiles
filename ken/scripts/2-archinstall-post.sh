@@ -64,3 +64,11 @@ sudo pacman -S libreoffice-fresh hunspell hunspell-en_us gimp inkscape
 
 #install pamac and octopi
 yay -S octopi octopi-notifier-frameworks pamac-all
+
+#install virtualbox
+yay -S virtualbox virtualbox-hostmodules-arch virtualbox-guest-iso virtualbox-ext-oracle
+
+sudo usermod -a -G vboxusers ${USER}
+
+#install discord
+yay -S discord
