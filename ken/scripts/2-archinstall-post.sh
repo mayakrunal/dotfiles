@@ -72,3 +72,5 @@ sudo usermod -a -G vboxusers ${USER}
 
 #install discord
 yay -S discord
+
+yay -S kodi kodi-addons
