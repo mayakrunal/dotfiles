@@ -33,9 +33,8 @@ mkfs.btrfs /dev/vda4    #btrfs root partition
 #create btrfs subvolumes
 mount /dev/vda4 /mnt
 btrfs su cr /mnt/@
-btrfs su cr /mnt/@var
-btrfs su cr /mnt/@opt
-btrfs su cr /mnt/@tmp
+btrfs su cr /mnt/@varlog
+btrfs su cr /mnt/@varcache
 umount /mnt
 
 #mount the subvolumes, boot & home partitions
@@ -44,9 +43,8 @@ mount -o noatime,compress=zstd,space_cache=v2,subvol=@ /dev/vda4 /mnt
 #create subvolume folders
 mkdir /mnt/{boot,home,var,opt,tmp}
 
-mount -o noatime,compress=zstd,space_cache=v2,subvol=@var /dev/vda4 /mnt/var
-mount -o noatime,compress=zstd,space_cache=v2,subvol=@opt /dev/vda4 /mnt/opt
-mount -o noatime,compress=zstd,space_cache=v2,subvol=@tmp /dev/vda4 /mnt/tmp
+mount -o noatime,compress=zstd,space_cache=v2,subvol=@varlog /dev/vda4 /mnt/var/log
+mount -o noatime,compress=zstd,space_cache=v2,subvol=@varcache /dev/vda4 /mnt/var/cache
 
 #mount boot & home
 mount /dev/vda1 /mnt/boot
