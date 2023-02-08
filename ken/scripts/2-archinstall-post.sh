@@ -50,27 +50,5 @@ sudo pacman -S adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts
 #install astrill vpn
 yay -S astrill gtk2 #astill still uses gtk2
 
-#install visual studio code
-yay -S visual-studio-code-bin
-
-#install alacritty
-sudo pacman -S alacritty
-
-#install ventoy (if you want to make a usb live disk)
-yay -S ventoy-bin
-
-#install libreoffice
-sudo pacman -S libreoffice-fresh hunspell hunspell-en_us gimp inkscape
-
-#install pamac and octopi
-yay -S octopi octopi-notifier-frameworks pamac-all
-
-#install virtualbox
-yay -S virtualbox virtualbox-hostmodules-arch virtualbox-guest-iso virtualbox-ext-oracle
-
-sudo usermod -a -G vboxusers ${USER}
-
-#install discord
-yay -S discord
-
-yay -S kodi kodi-addons
+#install reflector simple
+yay -S reflector-simple
