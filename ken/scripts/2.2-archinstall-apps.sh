@@ -1,5 +1,8 @@
 #!/bin/sh
 
+#joplin
+wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
+
 #install pamac and octopi
 yay -S octopi octopi-notifier-frameworks pamac-all
 

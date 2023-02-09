@@ -32,7 +32,7 @@ sudo pacman -S plasma plasma-wayland-session
 sudo systemctl enable sddm.service
 
 #kde applications
-sudo pacman -S firefox ark dolphin dolphin-plugins ffmpegthumbs filelight gwenview kate kdenlive kfind kgpg khelpcenter kleopatra kmag knotes konsole ksystemlog okular partitionmanager print-manager skanpage spectacle yakuake system-config-printer firewalld kwallet-pam kwalletmanager ksshaskpass
+sudo pacman -S wget firefox ark dolphin dolphin-plugins ffmpegthumbs filelight gwenview kate kdenlive kfind kgpg khelpcenter kleopatra kmag knotes konsole ksystemlog okular partitionmanager print-manager skanpage spectacle yakuake system-config-printer firewalld kwallet-pam kwalletmanager ksshaskpass
 
 #enable the firewall
 sudo systemctl enable firewalld.service
