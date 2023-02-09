@@ -6,12 +6,6 @@ wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_
 #install pamac and octopi
 yay -S octopi octopi-notifier-frameworks pamac-all
 
-#install visual studio code
-yay -S visual-studio-code-bin
-
-#install alacritty
-sudo pacman -S alacritty
-
 #install ventoy (if you want to make a usb live disk)
 yay -S ventoy-bin
 

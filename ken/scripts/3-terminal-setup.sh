@@ -1,4 +1,7 @@
 #!/bin/sh
+#install alacritty
+sudo pacman -S alacritty
+
 #install zsh & zsh-completions
 sudo pacman -S zsh zsh-completions ttf-hack-nerd bat fd exa tree
 
