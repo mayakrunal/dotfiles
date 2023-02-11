@@ -28,3 +28,6 @@ yay -S epson-inkjet-printer-escpr
 yay -S wmctrl xdotool libinput-gestures
 sudo gpasswd -a $USER input
 libinput-gestures-setup autostart start
+
+#input remapper
+yay -S input-remapper-git

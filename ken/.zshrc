@@ -1,5 +1,8 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+export DOTNET_ROOT=$HOME/.dotnet
+
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$DOTNET_ROOT:$DOTNET_ROOT/tools:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"

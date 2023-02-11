@@ -27,4 +27,11 @@ yay -S codeblocks
 yay -S pycharm-community-edition
 
 #install .net core
-yay -S dotnet-sdk aspnet-runtime aspnet-targeting-pack
+wget -O - https://dot.net/v1/dotnet-install.sh
+
+chmod +x dotnet-install.sh
+
+./dotnet-install.sh --channel STS
+
+export DOTNET_ROOT=$HOME/.dotnet
+export PATH=$PATH:$HOME/.dotnet:$HOME/.dotnet/tools
