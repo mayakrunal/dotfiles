@@ -11,6 +11,12 @@ mouse = [
         start=lazy.window.get_position()
     ),
     Drag(
+        [mod, "control"],
+        "Button1",
+        lazy.window.set_position(),
+        start=lazy.window.get_position()
+    ),
+    Drag(
         [mod],
         "Button3",
         lazy.window.set_size_floating(),

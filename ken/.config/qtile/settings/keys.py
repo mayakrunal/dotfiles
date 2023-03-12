@@ -71,6 +71,9 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
     # VS Code
     ([mod], "c", lazy.spawn(my.vscode)),
 
+    # Astrill
+    ([mod], "v", lazy.spawn(my.vpn)),
+
     # Terminal
     ([mod], "Return", lazy.spawn(my.terminal)),
 

@@ -1,4 +1,5 @@
-from libqtile import widget
+from qtile_extras import widget
+from qtile_extras.widget.decorations import PowerLineDecoration
 from .theme import colors
 from libqtile import qtile
 from .user import my
@@ -6,20 +7,23 @@ from .user import my
 # Get the icons at https://www.nerdfonts.com/cheat-sheet (you need a Nerd Font)
 
 
-# start with index 1 when using first and last are resevered
-colornames = ["dark",
-              "color1",
-              "color2",
-              "color3",
-              "color4",
-              "color1",
-              "color2",
-              "color3",
-              "color4",
-              "color1",
+# powerline alternating colors
+colornames = ["color1",
               "color2",
               "color3",
               "color4"]
+
+colorindex = 0
+
+
+def nextcolorname():
+    global colorindex
+    colorindex += 1
+    if colorindex < len(colornames):
+        return colornames[colorindex]
+    else:
+        colorindex = 0
+        return colornames[colorindex]
 
 
 def base(fg='text', bg='dark'):
@@ -30,46 +34,32 @@ def base(fg='text', bg='dark'):
 
 
 def separator():
-    return widget.Sep(**base(), linewidth=0, padding=5)
+    return widget.Sep(**base(fg="light"), linewidth=0, padding=5)
 
 
-def icon(fg='text', bg='dark', fontsize=16, text="?"):
-    return widget.TextBox(
-        **base(fg, bg),
-        fontsize=fontsize,
-        text=text,
-        padding=3
-    )
-
-
-def powerline(fg="light", bg="dark"):
-    return widget.TextBox(
-        **base(fg, bg),
-        text="",  # Icon: nf-oct-triangle_left
-        # text="",
-        fontsize=45,
-        padding=-6
-    )
+def powerline():
+    return {
+        "decorations": [PowerLineDecoration(path="arrow_left")]
+    }
 
 
 def workspaces():
     return [
-        separator(),
         widget.GroupBox(
             **base(fg='light'),
             font='Hack Nerd Font',
-            fontsize=19,
+            fontsize=18,
             margin_y=3,
             margin_x=0,
-            padding_y=8,
-            padding_x=5,
+            padding_y=2,
+            padding_x=15,
             borderwidth=1,
             active=colors['active'],
             inactive=colors['inactive'],
             rounded=True,
             hide_unused=False,
-            highlight_method='block',
-            urgent_alert_method='block',
+            # highlight_method='line',
+            # urgent_alert_method='line',
             urgent_border=colors['urgent'],
             this_current_screen_border=colors['focus'],
             this_screen_border=colors['grey'],
@@ -78,32 +68,34 @@ def workspaces():
             disable_drag=True
         ),
         separator(),
-        # widget.WindowName(**base(fg='focus'), fontsize=14, padding=5),
-        # separator(),
         widget.TaskList(**base(fg='focus'),
                         font='Hack Nerd Font',
                         fontsize=14,
                         padding=5,
+                        title_width_method='uniform',
                         highlight_method='block',
-                        theme_mode="preferred"),
-        separator(),
+                        theme_mode="preferred",
+                        txt_minimized="   ",
+                        txt_maximized="   ",
+                        txt_floating="  ",
+                        markup_normal="  {}"),
+        widget.Sep(**base(fg="dark"),
+                   **powerline(),
+                   linewidth=1,
+                   padding=7),
     ]
 
 
-def updater(colorindex):
+def updater():
+    bgcolor = nextcolorname()
     return [
-        powerline(colornames[colorindex],
-                  colornames[colorindex - 1]),
-
-        icon(bg=colornames[colorindex],
-             text=' '),  # Icon: nf-fa-download
-
         widget.CheckUpdates(
-            background=colors[colornames[colorindex]],
+            **powerline(),
+            background=colors[bgcolor],
             colour_have_updates=colors['text'],
             colour_no_updates=colors['text'],
             no_update_string='0',
-            display_format='{updates}',
+            display_format='  {updates}',
             update_interval=1800,
             custom_command='checkupdates',
             padding=5,
@@ -113,56 +105,53 @@ def updater(colorindex):
     ]
 
 
-def network(colorindex):
+def network():
+    bgcolor = nextcolorname()
     return [
-        powerline(colornames[colorindex], colornames[colorindex - 1]),
-
-        icon(bg=colornames[colorindex], text=' '),  # Icon: nf-fa-feed
-
-        widget.Net(**base(bg=colornames[colorindex]),
-                   format='{down} 󰜮󰜷 {up}',
+        widget.Net(**base(bg=bgcolor),
+                   **powerline(),
+                   format='󰜮 {down:.2f}{down_suffix} 󰜷 {up:.2f}{up_suffix}',
+                   prefix='M',
                    padding=3),
     ]
 
 
-def layoutIcon(colorindex):
+def layoutIcon():
+    bgcolor = nextcolorname()
     return [
-        powerline(colornames[colorindex], colornames[colorindex - 1]),
-
         widget.CurrentLayoutIcon(
-            **base(bg=colornames[colorindex]), scale=0.65),
-        # widget.CurrentLayout(**base(bg='color2'), padding=5),
+            **base(bg=bgcolor),
+            **powerline(),
+            use_mask=True,
+            padding=5,
+            scale=0.65),
     ]
 
 
-def calendar(colorindex):
+def calendar():
+    bgcolor = nextcolorname()
     return [
-        powerline(colornames[colorindex], colornames[colorindex - 1]),
-        # Icon: nf-mdi-calendar_clock
-        icon(bg=colornames[colorindex], fontsize=17, text=' '),
-
         widget.Clock(
-            **base(bg=colornames[colorindex]),
-            format='%d %B %I:%M %p',
+            **base(bg=bgcolor),
+            **powerline(),
+            format=' %d %B %I:%M %p',
             padding=5),
     ]
 
 
 def systray():
     return [
-        # powerline(colornames[colorindex], colornames[colorindex - 1]),
-
-        widget.Systray(background=colors["dark"], padding=5),
+        widget.Systray(background=colors["dark"],
+                       padding=5),
     ]
 
 
-def batteryicon(colorindex):
+def batteryicon():
+    bgcolor = nextcolorname()
     return [
-        powerline(colornames[colorindex], colornames[colorindex - 1]),
-
-        widget.BatteryIcon(**base(bg=colornames[colorindex])),
-        widget.Battery(
-            **base(bg=colornames[colorindex]), format='{percent:2.0%}'),
+        widget.UPowerWidget(**base(bg=bgcolor),
+                            **powerline(),
+                            margin=5),
     ]
 
 
@@ -171,7 +160,7 @@ def powermenu():
         widget.TextBox(
             **base('light', 'dark'),
             fontsize=14,
-            text="    ",
+            text="   ",
             padding=3,
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(
                 my.powermenu)}
@@ -179,29 +168,86 @@ def powermenu():
     ]
 
 
+def memory():
+    bgcolor = nextcolorname()
+    return [
+        widget.TextBox(**base(bg=bgcolor),
+                       text="󰍛",
+                       fontsize=24,
+                       padding=3,
+                       ),
+        widget.Memory(**base(bg=bgcolor),
+                      **powerline(),
+                      measure_mem="G",
+                      format='{MemUsed:.2f}{mm}/{MemTotal:.2f}{mm}',
+                      mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(
+                          my.terminal + ' -e htop')},
+                      padding=5),
+    ]
+
+
+def cpu():
+    bgcolor = nextcolorname()
+    return [
+        widget.TextBox(**base(bg=bgcolor),
+                       text="󰻠",
+                       fontsize=24,
+                       padding=3,
+                       ),
+        widget.CPU(**base(bg=bgcolor),
+                   **powerline(),
+                   measure_mem="G",
+                   format='{load_percent}%',
+                   mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(
+                       my.terminal + ' -e htop')},
+                   padding=5),
+    ]
+
+
+def sensors_groupbox():
+    bgcolor = nextcolorname()
+    return [
+        widget.WidgetBox(**base(bg=bgcolor),
+                         **powerline(),
+                         text_closed="  ",
+                         text_open="  ",
+                         fontsize=20,
+                         widgets=[
+            *updater(),
+
+            *cpu(),
+
+            *memory(),
+
+            *network(),
+        ]),
+    ]
+
+
 primary_widgets = [
     *workspaces(),
 
+    *sensors_groupbox(),
+
+    *batteryicon(),
+
+    *calendar(),
+
+    *layoutIcon(),
+
     *systray(),
-
-    *batteryicon(1),
-
-    *updater(2),
-
-    *network(3),
-
-    *calendar(4),
-
-    *layoutIcon(5),
 
     *powermenu(),
 ]
 
+# reset colorindex
+colorindex = 0
 
 secondary_widgets = [
     *workspaces(),
-    *calendar(1),
-    *layoutIcon(2),
+    *batteryicon(),
+    *calendar(),
+    *layoutIcon(),
     *powermenu(),
 ]
 

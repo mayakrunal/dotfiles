@@ -13,6 +13,7 @@ class UserValue:
     powermenu: str = "rofi -show powermenu -modi powermenu:~/.config/rofi/scripts/rofi-power-menu"
     screenshot: str = "spectacle"
     screenshot_region: str = "spectacle -r"
+    vpn: str = "astrill"
 
 
 my = UserValue()

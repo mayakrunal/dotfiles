@@ -24,18 +24,21 @@ from .user import my
 # groups = [Group(i) for i in [
 #     "   ", "   ", "   ", "   ", "  ", "   ", "   ", "   ", "   ",
 # ]]
-
+# superscript
+# ¹²³⁴⁵⁶⁷⁸⁹
+# subscript
+# ₁₂₃₄₅₆₇₈₉
 groups = [
-    Group(name="  ", matches=[Match(wm_class="firefox")]),
-    Group(name="  ", matches=[Match(wm_class="Alacritty")]),
-    Group(name="  ", matches=[Match(wm_class="code")]),
-    Group(name="  ", matches=[
+    Group(name="󰖟¹", matches=[Match(wm_class="firefox")]),
+    Group(name="²", matches=[Match(wm_class="Alacritty")]),
+    Group(name="³", matches=[Match(wm_class="code")]),
+    Group(name="󰪶⁴", matches=[
           Match(wm_class="thunar"),
           Match(wm_class="dolphin")
           ]),
-    Group(name="  ", matches=[Match(wm_class="Steam")]),
-    Group(name="  ", matches=[Match(wm_class="spotify")]),
-    Group(name="  "),
+    Group(name="󱎓⁵", matches=[Match(wm_class="Steam")]),
+    Group(name="󰎈⁶", matches=[Match(wm_class="spotify")]),
+    # Group(name="⁷"),
 ]
 
 # groups = [Group(i) for i in [
