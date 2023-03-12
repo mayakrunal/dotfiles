@@ -23,12 +23,12 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
     ([mod, "control"], "Left", lazy.layout.shrink()),
 
     # Toggle floating
-    ([mod, "shift"], "f", lazy.window.toggle_floating()),
+    ([mod, "control"], "f", lazy.window.toggle_floating()),
 
     # Full screen , minimize & normalize
     ([mod], "f", lazy.window.toggle_fullscreen()),
     ([mod], "m", lazy.window.toggle_maximize()),
-    ([mod, "shift"], "m", lazy.window.toggle_minimize()),
+    ([mod, "control"], "m", lazy.window.toggle_minimize()),
     ([mod], "n", lazy.layout.normalize()),
 
     # Move windows up or down in current stack
@@ -36,6 +36,9 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
     ([mod, "shift"], "Up", lazy.layout.shuffle_up()),
     ([mod, "shift"], "Left", lazy.layout.swap_left()),
     ([mod, "shift"], "Right", lazy.layout.swap_right()),
+
+    # Flip the layout
+    ([mod, "shift"], "space", lazy.layout.flip()),
 
     # Toggle between different layouts as defined below
     ([mod], "Tab", lazy.next_layout()),
