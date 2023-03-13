@@ -33,8 +33,8 @@ def base(fg='text', bg='dark'):
     }
 
 
-def separator():
-    return widget.Sep(**base(fg="light"), linewidth=0, padding=5)
+def separator(lw=0):
+    return widget.Sep(**base(fg="inactive"), linewidth=lw, padding=5)
 
 
 def powerline():
@@ -43,8 +43,22 @@ def powerline():
     }
 
 
+def appmenu():
+    return [
+        widget.TextBox(
+            **base('focus', 'dark'),
+            fontsize=18,
+            text="  ",
+            padding=3,
+            mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(my.appmenu)}
+        )
+    ]
+
+
 def workspaces():
     return [
+        *appmenu(),
+        separator(1),
         widget.GroupBox(
             **base(fg='light'),
             font='Hack Nerd Font',
@@ -52,7 +66,7 @@ def workspaces():
             margin_y=3,
             margin_x=0,
             padding_y=2,
-            padding_x=15,
+            padding_x=5,
             borderwidth=2,
             active=colors['active'],
             inactive=colors['inactive'],
@@ -67,7 +81,7 @@ def workspaces():
             other_screen_border=colors['dark'],
             disable_drag=True
         ),
-        separator(),
+        separator(1),
         widget.TaskList(**base(fg='light'),
                         font='Hack Nerd Font',
                         fontsize=14,
@@ -146,6 +160,7 @@ def calendar():
 
 def systray():
     return [
+        separator(),
         widget.Systray(background=colors["dark"],
                        padding=5),
     ]
@@ -162,6 +177,7 @@ def batteryicon():
 
 def powermenu():
     return [
+        separator(1),
         widget.TextBox(
             **base('light', 'dark'),
             fontsize=14,
@@ -250,9 +266,13 @@ colorindex = 0
 
 secondary_widgets = [
     *workspaces(),
+
     *batteryicon(),
+
     *calendar(),
+
     *layoutIcon(),
+
     *powermenu(),
 ]
 

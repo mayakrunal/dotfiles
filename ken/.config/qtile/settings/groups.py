@@ -52,7 +52,7 @@ groups = [
           matches=[Match(wm_class=["Steam"])]),
     Group(name="6",
           label="󰎈⁶",
-          matches=[Match(wm_class=["spotify", "vlc"])]),
+          matches=[Match(wm_class=["spotify", "vlc", "Kodi"])]),
     # Group(name="⁷"),
 ]
 

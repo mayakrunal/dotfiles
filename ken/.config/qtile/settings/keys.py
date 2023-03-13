@@ -59,7 +59,7 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
 
     # ------------ App Configs ------------
 
-    # Menu
+    # Dmenu & X11 Menu
     ([mod], "d", lazy.spawn(my.applauncher)),
 
     # Window Nav

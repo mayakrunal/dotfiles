@@ -5,6 +5,7 @@ from dataclasses import dataclass
 class UserValue:
     mod: str = "mod4"
     applauncher: str = "rofi -show drun"
+    appmenu: str = "jgmenu_run"
     windownav: str = "rofi -show"
     browser: str = "firefox"
     fileexplorer: str = "thunar"
