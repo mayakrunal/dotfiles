@@ -89,7 +89,8 @@ groups.extend([
                    DropDown("browser",
                             my.browser,
                             opacity=0.9,
-                            height=0.6),
+                            height=0.6,
+                            match=Match(wm_class=["firefox"])),
                ])
 ])
 

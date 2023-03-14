@@ -113,7 +113,7 @@ def updater():
             background=colors[bgcolor],
             colour_have_updates=colors['text'],
             colour_no_updates=colors['text'],
-            no_update_string='0',
+            no_update_string='  0',
             display_format='  {updates}',
             update_interval=1800,
             custom_command='checkupdates',
