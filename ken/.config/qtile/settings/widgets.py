@@ -1,5 +1,5 @@
 from qtile_extras import widget
-from qtile_extras.widget.decorations import PowerLineDecoration
+from qtile_extras.widget.decorations import PowerLineDecoration, BorderDecoration
 from .theme import colors
 from libqtile import qtile
 from .user import my
@@ -7,13 +7,21 @@ from .user import my
 # Get the icons at https://www.nerdfonts.com/cheat-sheet (you need a Nerd Font)
 
 
-# powerline alternating colors
+# alternating colors for widgets underline (or powerline)
 colornames = ["color1",
               "color2",
               "color3",
-              "color4"]
+              "color4",
+              "color5",
+              "color6",
+              "color7",
+              "color8",
+              "color9",
+              "color10"]
 
 colorindex = 0
+
+iconsize = 18
 
 
 def nextcolorname():
@@ -43,11 +51,17 @@ def powerline():
     }
 
 
+def underline(line_col='dark', width=[0, 0, 2, 0]):
+    return {
+        "decorations": [BorderDecoration(colour=colors[line_col], border_width=width)]
+    }
+
+
 def appmenu():
     return [
         widget.TextBox(
             **base('focus', 'dark'),
-            fontsize=18,
+            fontsize=iconsize,
             text="  ",
             padding=3,
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(my.appmenu)}
@@ -60,21 +74,23 @@ def workspaces():
         *appmenu(),
         separator(1),
         widget.GroupBox(
-            **base(fg='light'),
+            **base(fg='light', bg='dark'),
             font='Hack Nerd Font',
-            fontsize=18,
+            fontsize=iconsize,
             margin_y=3,
-            margin_x=0,
+            margin_x=1,
             padding_y=2,
-            padding_x=5,
+            padding_x=3,
             borderwidth=2,
             active=colors['active'],
             inactive=colors['inactive'],
-            rounded=True,
+            rounded=False,
             hide_unused=False,
-            highlight_method='text',
-            urgent_alert_method='text',
+            highlight_method='line',
+            center_aligned='true',
+            urgent_alert_method='line',
             urgent_border=colors['urgent'],
+            highlight_color=colors['dark'],
             this_current_screen_border=colors['focus'],
             this_screen_border=colors['grey'],
             other_current_screen_border=colors['dark'],
@@ -84,7 +100,7 @@ def workspaces():
         separator(1),
         widget.TaskList(**base(fg='light'),
                         font='Hack Nerd Font',
-                        fontsize=14,
+                        # fontsize=14,
                         padding=5,
                         rounded=True,
                         border=colors['focus'],
@@ -98,26 +114,30 @@ def workspaces():
                         txt_maximized="   ",
                         txt_floating="  ",
                         markup_normal="  {}"),
-        widget.Sep(**base(fg="dark"),
-                   **powerline(),
-                   linewidth=1,
-                   padding=7),
+        separator(1),
     ]
 
 
 def updater():
-    bgcolor = nextcolorname()
+    nxcolor = nextcolorname()
     return [
+        separator(),
+        widget.TextBox(**base(fg=nxcolor),
+                       **underline(line_col=nxcolor),
+                       text=" ",
+                       fontsize=iconsize,
+                       padding=3,
+                       ),
         widget.CheckUpdates(
-            **powerline(),
-            background=colors[bgcolor],
-            colour_have_updates=colors['text'],
-            colour_no_updates=colors['text'],
-            no_update_string='  0',
-            display_format='  {updates}',
+            **base(fg=nxcolor),
+            **underline(line_col=nxcolor),
+            colour_have_updates=colors[nxcolor],
+            colour_no_updates=colors[nxcolor],
+            no_update_string='0',
+            display_format='{updates}',
             update_interval=1800,
             custom_command='checkupdates',
-            padding=5,
+            padding=3,
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(
                 my.terminal + ' -e yay')}
         ),
@@ -125,10 +145,11 @@ def updater():
 
 
 def network():
-    bgcolor = nextcolorname()
+    nxcolor = nextcolorname()
     return [
-        widget.Net(**base(bg=bgcolor),
-                   **powerline(),
+        separator(),
+        widget.Net(**base(fg=nxcolor),
+                   **underline(line_col=nxcolor),
                    format='󰜮 {down:.2f}{down_suffix} 󰜷 {up:.2f}{up_suffix}',
                    prefix='M',
                    padding=3),
@@ -136,11 +157,12 @@ def network():
 
 
 def layoutIcon():
-    bgcolor = nextcolorname()
+    nxcolor = nextcolorname()
     return [
         widget.CurrentLayoutIcon(
-            **base(bg=bgcolor),
-            **powerline(),
+            **base(fg=nxcolor),
+            **underline(line_col=nxcolor),
+            fontsize=iconsize,
             use_mask=True,
             padding=5,
             scale=0.65),
@@ -148,29 +170,38 @@ def layoutIcon():
 
 
 def calendar():
-    bgcolor = nextcolorname()
+    nxcolor = nextcolorname()
     return [
+        separator(),
+        widget.TextBox(**base(fg=nxcolor),
+                       **underline(line_col=nxcolor),
+                       text="",
+                       fontsize=iconsize,
+                       padding=3,
+                       ),
         widget.Clock(
-            **base(bg=bgcolor),
-            **powerline(),
-            format=' %d %B %I:%M %p',
+            **base(fg=nxcolor),
+            **underline(line_col=nxcolor),
+            format='%d %B %I:%M %p',
             padding=5),
     ]
 
 
 def systray():
     return [
-        separator(),
+        separator(1),
         widget.Systray(background=colors["dark"],
+                       icon_size=iconsize,
                        padding=5),
     ]
 
 
 def batteryicon():
-    bgcolor = nextcolorname()
+    nxcolor = nextcolorname()
     return [
-        widget.UPowerWidget(**base(bg=bgcolor),
-                            **powerline(),
+        separator(),
+        widget.UPowerWidget(**base(fg=nxcolor),
+                            **underline(line_col=nxcolor),
                             margin=5),
     ]
 
@@ -180,7 +211,7 @@ def powermenu():
         separator(1),
         widget.TextBox(
             **base('light', 'dark'),
-            fontsize=14,
+            fontsize=iconsize,
             text="   ",
             padding=3,
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(
@@ -190,15 +221,17 @@ def powermenu():
 
 
 def memory():
-    bgcolor = nextcolorname()
+    nxcolor = nextcolorname()
     return [
-        widget.TextBox(**base(bg=bgcolor),
+        separator(),
+        widget.TextBox(**base(fg=nxcolor),
+                       **underline(line_col=nxcolor),
                        text="󰍛",
-                       fontsize=24,
+                       fontsize=iconsize,
                        padding=3,
                        ),
-        widget.Memory(**base(bg=bgcolor),
-                      **powerline(),
+        widget.Memory(**base(fg=nxcolor),
+                      **underline(line_col=nxcolor),
                       measure_mem="G",
                       format='{MemUsed:.2f}{mm}/{MemTotal:.2f}{mm}',
                       mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(
@@ -208,16 +241,17 @@ def memory():
 
 
 def cpu():
-    bgcolor = nextcolorname()
+    nxcolor = nextcolorname()
     return [
-        widget.TextBox(**base(bg=bgcolor),
+        separator(),
+        widget.TextBox(**base(fg=nxcolor),
+                       **underline(line_col=nxcolor),
                        text="󰻠",
-                       fontsize=24,
+                       fontsize=iconsize,
                        padding=3,
                        ),
-        widget.CPU(**base(bg=bgcolor),
-                   **powerline(),
-                   measure_mem="G",
+        widget.CPU(**base(fg=nxcolor),
+                   **underline(line_col=nxcolor),
                    format='{load_percent}%',
                    mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(
                        my.terminal + ' -e htop')},
@@ -225,22 +259,66 @@ def cpu():
     ]
 
 
-def sensors_groupbox():
-    bgcolor = nextcolorname()
+def lockindicator():
+    nxcolor = nextcolorname()
     return [
-        widget.WidgetBox(**base(bg=bgcolor),
-                         **powerline(),
+        separator(),
+        widget.CapsNumLockIndicator(**base(fg=nxcolor),
+                                    **underline(line_col=nxcolor),
+                                    update_interval=1),
+    ]
+
+
+def thermalsensor():
+    nxcolor = nextcolorname()
+    nxcolor2 = nextcolorname()
+    return [
+        separator(),
+        widget.TextBox(**base(fg=nxcolor),
+                       **underline(line_col=nxcolor),
+                       text="",
+                       fontsize=iconsize,
+                       padding=3,
+                       ),
+        widget.ThermalSensor(**base(fg=nxcolor),
+                             **underline(line_col=nxcolor),
+                             fmt='CPU: {}',
+                             update_interval=2),
+        separator(),
+        widget.TextBox(**base(fg=nxcolor2),
+                       **underline(line_col=nxcolor2),
+                       text="",
+                       fontsize=iconsize,
+                       padding=3,
+                       ),
+        widget.NvidiaSensors(**base(fg=nxcolor2),
+                             **underline(line_col=nxcolor2),
+                             fmt='GPU: {}',
+                             update_interval=2),
+    ]
+
+
+def sensors_groupbox():
+    nxcolor = nextcolorname()
+    return [
+        separator(),
+        widget.WidgetBox(**base(fg=nxcolor),
+                         **underline(line_col=nxcolor),
                          text_closed="  ",
                          text_open="  ",
-                         fontsize=20,
+                         fontsize=iconsize,
+                         close_button_location='right',
                          widgets=[
             *updater(),
+            *network(),
 
             *cpu(),
 
             *memory(),
 
-            *network(),
+            *thermalsensor(),
+
+            separator(),
         ]),
     ]
 
@@ -248,13 +326,13 @@ def sensors_groupbox():
 primary_widgets = [
     *workspaces(),
 
-    *sensors_groupbox(),
+    *layoutIcon(),
 
     *batteryicon(),
 
     *calendar(),
 
-    *layoutIcon(),
+    *sensors_groupbox(),
 
     *systray(),
 
@@ -267,18 +345,18 @@ colorindex = 0
 secondary_widgets = [
     *workspaces(),
 
+    *layoutIcon(),
+
     *batteryicon(),
 
     *calendar(),
-
-    *layoutIcon(),
 
     *powermenu(),
 ]
 
 widget_defaults = {
     'font': 'Hack Nerd Font Bold',
-    'fontsize': 14,
+    'fontsize': 12,
     'padding': 1,
 }
 extension_defaults = widget_defaults.copy()

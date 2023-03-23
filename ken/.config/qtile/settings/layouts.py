@@ -1,6 +1,3 @@
-# Antonio Sarosi
-# https://youtube.com/c/antoniosarosi
-# https://github.com/antoniosarosi/dotfiles
 
 from libqtile import layout
 from libqtile.config import Match
@@ -34,11 +31,14 @@ floating_layout = layout.Floating(
     float_rules=[
         *layout.Floating.default_float_rules,
         Match(wm_class='confirmreset'),
-        Match(wm_class='makebranch'),
-        Match(wm_class='maketag'),
+        Match(wm_class='astrill'),
         Match(wm_class='ssh-askpass'),
+        Match(wm_class='notification'),
+        Match(wm_class='blueman-manager'),
+        Match(wm_class='conky'),
+        Match(wm_class='pavucontrol'),
+        Match(wm_class='nm-connection-editor'),
         Match(title='branchdialog'),
-        Match(title='pinentry'),
     ],
     border_focus=colors["color4"][0]
 )

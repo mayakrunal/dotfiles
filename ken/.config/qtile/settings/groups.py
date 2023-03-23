@@ -1,7 +1,3 @@
-# Antonio Sarosi
-# https://youtube.com/c/antoniosarosi
-# https://github.com/antoniosarosi/dotfiles
-
 # Qtile workspaces
 
 from libqtile.config import Key, Group, Match, ScratchPad, DropDown
@@ -43,7 +39,7 @@ groups = [
           matches=[Match(wm_class=["Alacritty"])]),
     Group(name="3",
           label="³",
-          matches=[Match(wm_class=["code"])]),
+          matches=[Match(wm_class=["code", "jetbrains-idea-ce"])]),
     Group(name="4",
           label="󰪶⁴",
           matches=[Match(wm_class=["thunar", "dolphin"])]),

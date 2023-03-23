@@ -1,7 +1,3 @@
-# Antonio Sarosi
-# https://youtube.com/c/antoniosarosi
-# https://github.com/antoniosarosi/dotfiles
-
 # Qtile keybindings
 
 from libqtile.config import Key
@@ -56,6 +52,7 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
 
     ([mod, "control"], "q", lazy.shutdown()),
     ([mod], "r", lazy.spawncmd()),
+    [[mod], "l", lazy.spawn(my.lockscreen)],
 
     # ------------ App Configs ------------
 
@@ -79,9 +76,14 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
 
     # Terminal
     ([mod], "Return", lazy.spawn(my.terminal)),
+    # Fish Terminal
+    ([mod, "control"], "Return", lazy.spawn(my.terminal_fish)),
 
     # PowerMenu
     ([mod], "Escape", lazy.spawn(my.powermenu)),
+
+    # Audio Mixer
+    ([mod], "p", lazy.spawn(my.audiomixer)),
 
     # Redshift
     # ([mod], "r", lazy.spawn("redshift -O 2400")),
@@ -95,14 +97,11 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
 
     # Volume
     ([], "XF86AudioLowerVolume", lazy.spawn(
-        "pactl set-sink-volume @DEFAULT_SINK@ -5%"
-    )),
+        "pactl set-sink-volume @DEFAULT_SINK@ -5%")),
     ([], "XF86AudioRaiseVolume", lazy.spawn(
-        "pactl set-sink-volume @DEFAULT_SINK@ +5%"
-    )),
+        "pactl set-sink-volume @DEFAULT_SINK@ +5%")),
     ([], "XF86AudioMute", lazy.spawn(
-        "pactl set-sink-mute @DEFAULT_SINK@ toggle"
-    )),
+        "pactl set-sink-mute @DEFAULT_SINK@ toggle")),
 
     # Brightness
     ([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%")),
