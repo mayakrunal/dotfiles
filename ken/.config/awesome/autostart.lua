@@ -1,0 +1,31 @@
+-- Everything related to window managment
+local awful = require("awful")
+
+-- auto start applications
+local autostart = {
+    -- set the monitor
+    xrandar =
+    "xrandr --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP1 --mode 1920x1080 --pos 1920x0 --rotate normal",
+    --restore wallpaper
+    nitrogen = "nitrogen --restore",
+    -- polkit agent
+    polkti_agent = "/usr/lib/xfce-polkit/xfce-polkit",
+    -- screen locker
+    screen_locker = "xss-lock /usr/lib/kscreenlocker_greet",
+    -- turn on numlock
+    numlock = "numlockx on",
+    -- systray volume and network manager applet
+    volume = "volumeicon",
+    --#network manager applet
+    network_applet = "nm-applet",
+    --bluetooth applet
+    bluetooth_applet = "blueman-applet",
+    --ime input methods
+    ime = "fcitx5",
+    --start picom
+    compositor = "picom"
+}
+-- execute each one
+for key, cmd in pairs(autostart) do
+    awful.spawn.with_shell(string.format("pgrep -u $USER -fx '%s' > /dev/null || (%s)", cmd, cmd))
+end
