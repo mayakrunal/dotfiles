@@ -52,7 +52,13 @@ local fns     = {
         -- click to view the tag
         view_only   = function(t) t:view_only() end,
         -- move client window to tag
-        move_to_tag = function(t) if client.focus then client.focus:move_to_tag(t) end end,
+        move_to_tag = function(t)
+            if client.focus then
+                --move to switch to client
+                client.focus:move_to_tag(t)
+                t:view_only()
+            end
+        end,
         --- toggle the tag view / not view
         toggle_tag  = function(t) if client.focus then client.focus:toggle_tag(t) end end,
         -- toggle the tag view
@@ -86,6 +92,10 @@ local fns     = {
 -- global mouse buttons
 buttons.globals = gears.table.join(
     awful.button({}, 3, fns.g_mouse.toggle_mainmenu),
+    -- scroll buttons
+    awful.button({}, 4, fns.g_mouse.tag_next),
+    awful.button({}, 5, fns.g_mouse.tag_prev),
+    -- side buttons
     awful.button({}, 8, fns.g_mouse.tag_next),
     awful.button({}, 9, fns.g_mouse.tag_prev)
 )
@@ -115,6 +125,10 @@ end
 buttons.layoutbox_buttons = gears.table.join(
     awful.button({}, 1, fns.layoutbox_mouse.layout_next),
     awful.button({}, 3, fns.layoutbox_mouse.layout_prv),
+    --scroll buttons
+    awful.button({}, 4, fns.layoutbox_mouse.layout_next),
+    awful.button({}, 5, fns.layoutbox_mouse.layout_prv),
+    -- side buttons
     awful.button({}, 8, fns.layoutbox_mouse.layout_next),
     awful.button({}, 9, fns.layoutbox_mouse.layout_prv)
 )
@@ -126,6 +140,10 @@ buttons.taglist_buttons = gears.table.join(
     awful.button({ vars.modkey }, 1, fns.tags_mouse.move_to_tag),
     awful.button({}, 3, fns.tags_mouse.viewtoggle),
     awful.button({ vars.modkey }, 3, fns.tags_mouse.toggle_tag),
+    --scroll buttons
+    awful.button({}, 4, fns.tags_mouse.viewnext),
+    awful.button({}, 5, fns.tags_mouse.viewprev),
+    -- side buttons
     awful.button({}, 8, fns.tags_mouse.viewnext),
     awful.button({}, 9, fns.tags_mouse.viewprev)
 )
@@ -134,6 +152,10 @@ buttons.taglist_buttons = gears.table.join(
 buttons.tasklist_buttons = gears.table.join(
     awful.button({}, 1, fns.tasklist_mouse.min_or_raise),
     awful.button({}, 3, fns.tasklist_mouse.menu_client_list),
+    -- scroll buttons
+    awful.button({}, 4, fns.tasklist_mouse.client_focus_next),
+    awful.button({}, 5, fns.tasklist_mouse.client_focus_prev),
+    -- side buttons
     awful.button({}, 8, fns.tasklist_mouse.client_focus_next),
     awful.button({}, 9, fns.tasklist_mouse.client_focus_prev)
 )

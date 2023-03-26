@@ -55,8 +55,7 @@ return {
         properties = { floating = true },
     },
     -- Add titlebars to normal clients and dialogs
-    { rule_any = { type = { "normal", "dialog" } }, properties = { titlebars_enabled = true }, },
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
+    { rule_any = { type = { "normal", "dialog" } },      properties = { titlebars_enabled = true }, },
+    -- no titlebar rules
+    { rule_any = { class = { "Alacritty", "Astrill" } }, properties = { titlebars_enabled = false } },
 }

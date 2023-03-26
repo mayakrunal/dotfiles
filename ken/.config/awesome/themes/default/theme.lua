@@ -27,7 +27,7 @@ theme.fg_minimize                               = "#ffffff"
 theme.useless_gap                               = dpi(0)
 theme.border_width                              = dpi(1)
 theme.border_normal                             = "#000000"
-theme.border_focus                              = "#535d6c"
+theme.border_focus                              = "#3675d9"
 theme.border_marked                             = "#91231c"
 
 -- There are other variable sets
@@ -46,10 +46,10 @@ theme.border_marked                             = "#91231c"
 -- Generate taglist squares:
 local taglist_square_size                       = dpi(4)
 theme.taglist_squares_sel                       = theme_assets.taglist_squares_sel(
-    taglist_square_size, theme.fg_normal
+        taglist_square_size, theme.fg_normal
 )
 theme.taglist_squares_unsel                     = theme_assets.taglist_squares_unsel(
-    taglist_square_size, theme.fg_normal
+        taglist_square_size, theme.fg_normal
 )
 
 -- Variables set for theming notifications:
@@ -138,7 +138,7 @@ theme.layout_cornerse                           = themes_path .. "default/layout
 
 -- Generate Awesome icon:
 theme.awesome_icon                              = theme_assets.awesome_icon(
-    theme.menu_height, theme.bg_focus, theme.fg_focus
+        theme.menu_height, theme.bg_focus, theme.fg_focus
 )
 
 -- Define the icon theme for application icons. If not set then the icons

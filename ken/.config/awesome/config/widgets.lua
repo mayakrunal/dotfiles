@@ -16,7 +16,9 @@ local buttons   = require("config.buttons")
 --  widgets
 return {
     -- main launcher (single instance)
-    launcher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = awmenu }),
+    launcher = function()
+        return awful.widget.launcher({ image = beautiful.awesome_icon, menu = awmenu })
+    end,
     -- promptbox for each screen
     promptbox = function() return awful.widget.prompt() end,
     -- an imagebox widget which will contain an icon indicating which layout we're using.

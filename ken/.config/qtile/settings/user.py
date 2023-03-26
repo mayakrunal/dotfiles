@@ -4,6 +4,7 @@ from dataclasses import dataclass
 @dataclass
 class UserValue:
     mod: str = "mod4"
+    alt: str = "mod1"
     applauncher: str = "rofi -show drun"
     appmenu: str = "jgmenu_run"
     audiomixer: str = "pavucontrol"

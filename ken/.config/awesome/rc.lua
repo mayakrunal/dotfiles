@@ -14,15 +14,26 @@ local awful = require("awful")
 require("awful.autofocus")
 
 -- Widget and layout library
-local wibox     = require("wibox")
+local wibox      = require("wibox")
 
 -- Theme handling library
-local beautiful = require("beautiful")
+local beautiful  = require("beautiful")
 
 -- XDG Application menu implementation
-local menubar   = require("menubar")
+local menubar    = require("menubar")
 
-local config    = require("config")
+-- Theme list
+local themes     = { "default", "gtk", "sky", "xsources", "zenburn" }
+
+-- selected theme path
+local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua",
+								 os.getenv("HOME"),
+								 themes[1]) --select your theme
+
+-- initiate the theme （make sure to init the theme first) before calling config
+beautiful.init(theme_path)
+
+local config = require("config")
 
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -31,13 +42,7 @@ require("awful.hotkeys_popup.keys")
 -- start error handling
 require("errors")
 
--- selected theme path
-local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua",
-								 os.getenv("HOME"),
-								 config.vars.themes[1]) --select your theme
 
--- initiate the theme
-beautiful.init(theme_path)
 
 -- Set the terminal for applications that require it
 menubar.utils.terminal = config.vars.terminal
@@ -87,7 +92,7 @@ awful.screen.connect_for_each_screen(function(s)
 		{
 			-- Left widgets
 			layout = wibox.layout.fixed.horizontal,
-			config.widgets.launcher,
+			config.widgets.launcher(),
 			s.mytaglist,
 			s.mypromptbox,
 		},
