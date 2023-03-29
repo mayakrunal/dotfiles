@@ -8,9 +8,10 @@ local gears     = require("gears")
 local wibox     = require("wibox")
 -- our aw-menu
 local awmenu    = require("config.menu")
+-- lain widgets
+local lain      = require("lain")
 --buttons
 local buttons   = require("config.buttons")
-
 
 
 --  widgets
@@ -54,5 +55,5 @@ return {
     -- a textclock widget (single instance)
     textclock = wibox.widget.textclock(),
     -- wibox (bar) all widgets needs to be setup on this
-    wibar = function(s) return awful.wibar({ position = "top", screen = s }) end
+    wibar = function(s) return awful.wibar({ position = "top", screen = s }) end,
 }

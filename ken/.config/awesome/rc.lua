@@ -92,7 +92,7 @@ awful.screen.connect_for_each_screen(function(s)
 		{
 			-- Left widgets
 			layout = wibox.layout.fixed.horizontal,
-			config.widgets.launcher(),
+			--config.widgets.launcher(),
 			s.mytaglist,
 			s.mypromptbox,
 		},
@@ -101,6 +101,7 @@ awful.screen.connect_for_each_screen(function(s)
 		{
 			-- Right widgets
 			layout = wibox.layout.fixed.horizontal,
+			config.widgets.bat,
 			config.widgets.keyboardlayout,
 			config.widgets.systray,
 			config.widgets.textclock,

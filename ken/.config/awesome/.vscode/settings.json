@@ -16,5 +16,7 @@
     "Lua.hint.setType": true,
     "Lua.workspace.library": [
         "/usr/share/awesome/lib",
+        "/usr/share/lua/5.3/freedesktop",
+        "/usr/share/lua/5.3/lain",
     ]
 }

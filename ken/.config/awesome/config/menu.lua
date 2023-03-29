@@ -7,6 +7,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 local beautiful = require("beautiful")
 -- our variables
 local vars = require("config.vars")
+
+local freedesktop = require("freedesktop")
 -- global c variable
 local awesome = awesome
 
@@ -28,8 +30,8 @@ local menu_cmds = {
 
 
 -- main menu (we put only need one instance of this)
-return awful.menu({
-    items = {
+return freedesktop.menu.build({
+    before = {
         {
             -- awesome menu entries
             "awesome",
@@ -41,7 +43,7 @@ return awful.menu({
                 { "quit",        menu_cmds.quit, },
             },
             beautiful.awesome_icon
-        },
-        { "open terminal", vars.terminal },
-    }
+        }
+    },
+    after = { { "open terminal", vars.terminal } },
 })

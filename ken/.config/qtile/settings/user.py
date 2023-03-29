@@ -15,6 +15,7 @@ class UserValue:
     terminal: str = "alacritty"
     terminal_fish: str = "alacritty -e /bin/fish"
     powermenu: str = "rofi -show powermenu -modi powermenu:~/.config/rofi/scripts/rofi-power-menu"
+    screenlayout: str = "rofi -show screenlayout -modi screenlayout:~/.config/rofi/scripts/rofi-screen-layout"
     screenshot: str = "spectacle"
     screenshot_region: str = "spectacle -r"
     vpn: str = "astrill"

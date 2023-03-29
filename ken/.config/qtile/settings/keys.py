@@ -18,8 +18,8 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
     # Move windows up or down in current stack
     ([mod, "control"], "Down", lazy.layout.shuffle_down()),
     ([mod, "control"], "Up", lazy.layout.shuffle_up()),
-    ([mod, "control"], "Left", lazy.layout.swap_left()),
-    ([mod, "control"], "Right", lazy.layout.swap_right()),
+    ([mod, "control"], "Left", lazy.layout.swap_left(), lazy.layout.shuffle_left()),
+    ([mod, "control"], "Right", lazy.layout.swap_right(), lazy.layout.shuffle_right()),
 
     # Change window sizes (MonadTall)
     ([mod], "KP_Add", lazy.layout.grow()),
@@ -72,6 +72,9 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
 
     # PowerMenu
     ([mod], "Escape", lazy.spawn(my.powermenu)),
+
+    # Screen Layout
+    ([mod], "p", lazy.spawn(my.screenlayout)),
 
     # Browser
     ([mod, alt], "f", lazy.spawn(my.browser)),

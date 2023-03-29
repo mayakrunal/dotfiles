@@ -1,0 +1,64 @@
+#!/usr/bin/bash
+
+set -e
+set -u
+
+# Don't allow custom entries
+echo -e "\0no-custom\x1ftrue"
+# Use markup
+echo -e "\0markup-rows\x1ftrue"
+
+echo -en "\0prompt\x1fSelect Layout:\n"
+
+laptop="eDP1"
+laptop_res="1920x1080"
+laptop_pos="0x0"
+external_res="1920x1080"
+external="DP1"
+external_pos="1920x0"
+
+keys=(L_E E_L L E)
+
+declare -A choices
+choices[L_E]="Laptop (Primary) - External"
+choices[E_L]="Laptop - External (Primary)"
+choices[L]="Laptop Only"
+choices[E]="External Only"
+
+#  \uf109 󰍹 \udb80\udf79
+declare -A icons
+icons[L_E]=" 󰍹 "
+icons[E_L]="󰍹  "
+icons[L]="   "
+icons[E]="  󰍹 "
+
+declare -A actions
+actions[L_E]="xrandr --output ${laptop} --primary --mode ${laptop_res} --pos ${laptop_pos} --rotate normal --output ${external} --mode ${external_res} --pos ${external_pos} --rotate normal"
+actions[E_L]="xrandr --output ${laptop} --mode ${laptop_res} --pos ${laptop_pos} --rotate normal --output ${external} --primary --mode ${external_res} --pos ${external_pos} --rotate normal"
+actions[L]="xrandr --output ${laptop} --primary --mode ${laptop_res} --pos ${laptop_pos} --rotate normal --output ${external} --off"
+actions[E]="xrandr --output ${laptop} --off --output ${external} --primary --mode ${external_res} --pos ${external_pos} --rotate normal"
+
+# Define the messages after parsing the CLI options so that it is possible to
+# configure them in the future.
+function write_message {
+    icon="<span font_size=\"150%\">$1</span>"
+    text="<span font_size=\"medium\">$2</span>"
+    key=$3
+    echo -en "\u200e$icon \u2068$text\u2069\0info\x1f$key\n"
+}
+
+if [ $# -eq 0 ]; then
+
+    for key in "${keys[@]}"; do
+        write_message "${icons[$key]}" "${choices[$key]}" "$key"
+    done
+    #echo -e "My Choice\0info\x1ftest\n"
+    exit 0
+else
+    if [[ -n "${ROFI_INFO}" ]]; then
+        key="${ROFI_INFO}"
+        #perform the action
+        ${actions[$key]}
+        exit 0
+    fi
+fi

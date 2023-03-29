@@ -149,4 +149,7 @@ configuration {
       sorting-method:    "name";
   }
 }
-@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
+//@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
+//@theme "/home/ken/.local/share/rofi/themes/launchpad.rasi"
+//@theme "/usr/share/rofi/themes/DarkBlue.rasi"
+@theme "/home/ken/.local/share/rofi/themes/rounded-blue-dark.rasi"

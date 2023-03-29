@@ -20,7 +20,7 @@ return {
     -- gaps between clients in tags
     client_gap        = 5,
     -- rofi window nav
-    rofi_wnav         = "rofi - show",
+    rofi_wnav         = "rofi -show",
     -- browser
     browser           = "firefox",
     -- file browser
