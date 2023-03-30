@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 
-#dotnet
+#dotnet 
 export DOTNET_ROOT=$HOME/.dotnet
 
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$DOTNET_ROOT:$DOTNET_ROOT/tools:$PATH
