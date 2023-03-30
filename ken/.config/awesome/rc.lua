@@ -22,13 +22,10 @@ local beautiful  = require("beautiful")
 -- XDG Application menu implementation
 local menubar    = require("menubar")
 
--- Theme list
-local themes     = { "default", "gtk", "sky", "xsources", "zenburn" }
-
 -- selected theme path
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua",
 								 os.getenv("HOME"),
-								 themes[1]) --select your theme
+								 "default") --select your theme
 
 -- initiate the theme （make sure to init the theme first) before calling config
 beautiful.init(theme_path)
@@ -93,19 +90,36 @@ awful.screen.connect_for_each_screen(function(s)
 			-- Left widgets
 			layout = wibox.layout.fixed.horizontal,
 			--config.widgets.launcher(),
+			config.widgets.sep(5, ""),
 			s.mytaglist,
 			s.mypromptbox,
+			config.widgets.sep(5, "|"),
 		},
 		-- Middle widget
 		s.mytasklist,
 		{
 			-- Right widgets
 			layout = wibox.layout.fixed.horizontal,
-			config.widgets.bat,
-			config.widgets.keyboardlayout,
+			config.widgets.sep(5, "|"),
 			config.widgets.systray,
-			config.widgets.textclock,
+			config.widgets.sep(5, "|"),
+			config.widgets.pacman,
+			config.widgets.sep(3, ""),
+			config.widgets.fs,
+			config.widgets.sep(3, ""),
+			config.widgets.cpu,
+			config.widgets.sep(3, ""),
+			config.widgets.mem,
+			config.widgets.sep(3, ""),
+			config.widgets.brightness,
+			config.widgets.sep(3, ""),
+			config.widgets.bat,
+			config.widgets.sep(3, ""),
+			--config.widgets.keyboardlayout,
+			config.widgets.calendar,
+			config.widgets.sep(3, ""),
 			s.mylayoutbox,
+			config.widgets.sep(5, ""),
 		},
 	})
 end)
@@ -135,7 +149,8 @@ end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
-	awful.titlebar(c):setup(config.titlebar.new(c))
+	awful.titlebar(c, { size = 20 }):setup(config
+		.titlebar.new(c))
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.

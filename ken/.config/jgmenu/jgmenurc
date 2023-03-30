@@ -4,8 +4,8 @@
 # hide_on_startup = 0
 # csv_cmd = apps
 # tint2_look = 0
-position_mode = fixed
-edge_snap_x = 30
+position_mode = pointer
+edge_snap_x = 60
 terminal_exec = alacritty
 # terminal_args = -e
 # monitor = 0

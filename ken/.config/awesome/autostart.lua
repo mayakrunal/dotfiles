@@ -3,9 +3,6 @@ local awful = require("awful")
 
 -- auto start applications
 local autostart = {
-    -- set the monitor
-    xrandar =
-    "xrandr --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP1 --mode 1920x1080 --pos 1920x0 --rotate normal",
     --restore wallpaper
     nitrogen = "nitrogen --restore",
     -- polkit agent
@@ -23,7 +20,10 @@ local autostart = {
     --ime input methods
     ime = "fcitx5",
     --start picom
-    compositor = "picom"
+    compositor = "picom",
+    -- set the monitor
+    --xrandar =
+    --"xrandr --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP1 --mode 1920x1080 --pos 1920x0 --rotate normal",
 }
 -- execute each one
 for key, cmd in pairs(autostart) do

@@ -17,11 +17,6 @@ def autostart():
     subprocess.call([path.join(qtile_path, 'autostart.sh')])
 
 
-@hook.subscribe.startup_complete
-def autostart():
-    subprocess.call([path.join(qtile_path, 'startup_completed.sh')])
-
-
 main = None
 
 # A function which generates group binding hotkeys.

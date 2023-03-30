@@ -122,6 +122,8 @@ fns.c_keys = {
     move_to_screen = function(c) c:move_to_screen() end,
     -- keep on top
     keep_on_top = function(c) c.ontop = not c.ontop end,
+    -- keep on top
+    sticky = function(c) c.sticky = not c.sticky end,
     -- minimize client
     minimize = function(c)
         -- The client currently has the input focus, so it cannot be
@@ -264,6 +266,28 @@ keys.globals = gears.table.join(
               fns.g_keys.client_restore,
               { description = "restore minimized", group = "client" }),
 
+    -- Hardware keys
+    awful.key({},
+              "XF86AudioMute",
+              fns.g_keys.spawn_fun(vars.muteaudio),
+              { description = "mute audio", group = "hardware" }),
+    awful.key({},
+              "XF86AudioLowerVolume",
+              fns.g_keys.spawn_fun(vars.decreaseaudio),
+              { description = "decrease audio", group = "hardware" }),
+    awful.key({},
+              "XF86AudioRaiseVolume",
+              fns.g_keys.spawn_fun(vars.increaseaudio),
+              { description = "increase audio", group = "hardware" }),
+    awful.key({},
+              "XF86MonBrightnessUp",
+              fns.g_keys.spawn_fun(vars.brightnessup),
+              { description = "incrase brightness", group = "hardware" }),
+    awful.key({},
+              "XF86MonBrightnessDown",
+              fns.g_keys.spawn_fun(vars.brightnessdown),
+              { description = "decrease brightness", group = "hardware" }),
+
     -- Standard program (Launchers)
     awful.key({ vars.modkey },
               "r",
@@ -285,6 +309,10 @@ keys.globals = gears.table.join(
               "Escape",
               fns.g_keys.spawn_fun(vars.powermenu), -- rofi powermenu
               { description = "Rofi powermenu", group = "launcher" }),
+    awful.key({ vars.modkey },
+              "p",
+              fns.g_keys.spawn_fun(vars.screenlayout), -- rofi screen layout
+              { description = "Rofi screenlayout", group = "launcher" }),
     awful.key({ vars.modkey },
               "Return",
               fns.g_keys.spawn_fun(vars.terminal), --terminal
@@ -454,6 +482,10 @@ keys.client = gears.table.join(
               "t",
               fns.c_keys.keep_on_top,
               { description = "toggle keep on top", group = "client" }),
+    awful.key({ vars.modkey },
+              "s",
+              fns.c_keys.sticky,
+              { description = "make client sticky", group = "client" }),
     awful.key({ vars.modkey },
               "n",
               fns.c_keys.minimize,

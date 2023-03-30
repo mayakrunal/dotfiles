@@ -18,7 +18,7 @@ return {
     -- rofi launcher
     rofi_drun         = "rofi -show drun",
     -- gaps between clients in tags
-    client_gap        = 5,
+    client_gap        = 2,
     -- rofi window nav
     rofi_wnav         = "rofi -show",
     -- browser
@@ -29,10 +29,18 @@ return {
     vscode            = "code",
     -- my power menu
     powermenu         = "rofi -show powermenu -modi powermenu:~/.config/rofi/scripts/rofi-power-menu",
+    -- screen layout
+    screenlayout      =
+    "rofi -show screenlayout -modi screenlayout:~/.config/rofi/scripts/rofi-screen-layout",
     -- screen shot
     screenshot        = "spectacle",
     screenshot_region = "spectacle -r",
     vpn               = "astrill",
     lockscreen        = "loginctl lock-session",
-    audiomixer        = "pavucontrol"
+    audiomixer        = "pavucontrol",
+    muteaudio         = "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    increaseaudio     = "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+    decreaseaudio     = "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+    brightnessup      = "brightnessctl set +5%",
+    brightnessdown    = "brightnessctl set 5%-",
 }
