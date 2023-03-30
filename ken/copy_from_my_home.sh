@@ -21,13 +21,27 @@ copy_folder() {
 
 }
 
+copy_file() {
+    SOURCE=$1
+    DEST=$2
+    if [ -f "$SOURCE" ]; then
+        echo "MAKE SURE DESTDIR EXISTS"
+        mkdir -p "$DEST"
+        echo "COPYING SOURCE:$SOURCE , TO DEST: $DEST "
+        cp -a "$SOURCE" "$DEST"
+    else
+        echo "SOURCE: $SOURCE DOES NOT EXISTS"
+    fi
+}
+
 # config folders
 config=("/awesome"
     "/alacritty"
     "/conky"
     "/jgmenu"
     "/lf"
-    "/nvim"
+    #   "/nvim"
+    "/qtile"
     "/picom"
     "/rofi")
 
@@ -37,3 +51,20 @@ for FOLDER in "${config[@]}"; do
     DEST=$GIT_DIR$CONFIG_FOLDER$FOLDER
     copy_folder "$SOURCE" "$DEST"
 done
+
+#profile files
+profiles=(
+    "/.bash_profile"
+    "/.bashrc"
+    "/.vimrc"
+    "/.zshrc"
+    "/.xprofile")
+
+for FILE in "${profiles[@]}"; do
+
+    SOURCE=$HOME_DIR$FILE
+    DEST=$GIT_DIR
+    copy_file "$SOURCE" "$DEST"
+done
+
+echo "DONE."
