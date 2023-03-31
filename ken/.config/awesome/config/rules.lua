@@ -1,10 +1,11 @@
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Everything related to window managment
-local awful = require("awful")
+local awful     = require("awful")
 
-local buttons = require("config.buttons")
-local keys = require("config.keys")
+local buttons   = require("config.buttons")
+local keys      = require("config.keys")
+local tags      = require("config.tags")
 
 return {
     -- All clients will match this rule.
@@ -55,7 +56,22 @@ return {
         properties = { floating = true },
     },
     -- Add titlebars to normal clients and dialogs
-    { rule_any = { type = { "normal", "dialog" } },      properties = { titlebars_enabled = true }, },
+    { rule_any = { type = { "normal", "dialog" } },           properties = { titlebars_enabled = true }, },
     -- no titlebar rules
-    { rule_any = { class = { "Alacritty", "Astrill" } }, properties = { titlebars_enabled = false } },
+    {
+        rule_any = { class = { "Alacritty", "Astrill", "Steam" } },
+        properties = { titlebars_enabled = false }
+    },
+    -- Tag 1 (All browser related things)
+    { rule_any = { class = { "firefox" } },                   properties = { tag = tags[1].name } },
+    -- Tag 2 (terminals)
+    { rule_any = { class = { "Alacritty" } },                 properties = { tag = tags[2].name } },
+    -- Tag 3 (coding)
+    { rule_any = { class = { "Code", "jetbrains-idea-ce" } }, properties = { tag = tags[3].name } },
+    -- Tag 4 (file browsers)
+    { rule_any = { class = { "Thunar", "dolphin" } },         properties = { tag = tags[4].name } },
+    -- Tag 5 (games)
+    { rule_any = { class = { "Steam" } },                     properties = { tag = tags[5].name } },
+    -- Tag 6 (music)
+    { rule_any = { class = { "Spotify", "vlc", "Kodi" } },    properties = { tag = tags[6].name } },
 }

@@ -287,6 +287,10 @@ keys.globals = gears.table.join(
               "XF86MonBrightnessDown",
               fns.g_keys.spawn_fun(vars.brightnessdown),
               { description = "decrease brightness", group = "hardware" }),
+    awful.key({},
+              "Print",
+              fns.g_keys.spawn_fun(vars.screenshot),
+              { description = "Take a ScreenShot", group = "hardware" }),
 
     -- Standard program (Launchers)
     awful.key({ vars.modkey },

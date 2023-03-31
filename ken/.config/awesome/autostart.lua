@@ -21,10 +21,8 @@ local autostart = {
     ime = "fcitx5",
     --start picom
     compositor = "picom",
+    --kwallet
     kwallet = "/usr/lib/pam_kwallet_init"
-    -- set the monitor
-    --xrandar =
-    --"xrandr --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP1 --mode 1920x1080 --pos 1920x0 --rotate normal",
 }
 -- execute each one
 for key, cmd in pairs(autostart) do

@@ -73,15 +73,20 @@ awful.screen.connect_for_each_screen(function(s)
 		value.props.screen = s --set the current screen
 		awful.tag.add(value.name, value.props)
 	end
+	local wi = config.widgets
 
 	-- attach to screen so we can get it later for each screen
-	s.mypromptbox = config.widgets.promptbox()
-	s.mytaglist = config.widgets.taglist(s)
-	s.mytasklist = config.widgets.tasklist(s)
-	s.mylayoutbox = config.widgets.layoutbox(s)
+	s.mypromptbox = wi.promptbox()
+	s.mytaglist = wi.taglist(s)
+	s.mytasklist = wi.tasklist(s)
+	s.mylayoutbox = wi.layoutbox(s)
 
 	-- Create the wibar
 	s.mywibar = config.widgets.wibar(s)
+
+	local function primary_sep()
+		if s == screen.primary then return wi.sep(5, "|") else return wi.sep(0, "") end
+	end
 
 	-- Add widgets to the wibar
 	s.mywibar:setup({
@@ -90,36 +95,36 @@ awful.screen.connect_for_each_screen(function(s)
 			-- Left widgets
 			layout = wibox.layout.fixed.horizontal,
 			--config.widgets.launcher(),
-			config.widgets.sep(5, ""),
+			wi.sep(5, ""),
 			s.mytaglist,
 			s.mypromptbox,
-			config.widgets.sep(5, "|"),
+			wi.sep(5, "|"),
 		},
 		-- Middle widget
 		s.mytasklist,
 		{
 			-- Right widgets
 			layout = wibox.layout.fixed.horizontal,
-			config.widgets.sep(5, "|"),
-			config.widgets.systray,
-			config.widgets.sep(5, "|"),
-			config.widgets.pacman,
-			config.widgets.sep(3, ""),
-			config.widgets.fs,
-			config.widgets.sep(3, ""),
-			config.widgets.cpu,
-			config.widgets.sep(3, ""),
-			config.widgets.mem,
-			config.widgets.sep(3, ""),
-			config.widgets.brightness,
-			config.widgets.sep(3, ""),
-			config.widgets.bat,
-			config.widgets.sep(3, ""),
+			primary_sep(),
+			wi.systray,
+			wi.sep(5, "|"),
+			wi.pacman,
+			wi.sep(3, ""),
+			wi.fs,
+			wi.sep(3, ""),
+			wi.cpu,
+			wi.sep(3, ""),
+			wi.mem,
+			wi.sep(3, ""),
+			wi.brightness,
+			wi.sep(3, ""),
+			wi.bat,
+			wi.sep(3, ""),
 			--config.widgets.keyboardlayout,
-			config.widgets.calendar,
-			config.widgets.sep(3, ""),
+			wi.calendar,
+			wi.sep(3, ""),
 			s.mylayoutbox,
-			config.widgets.sep(5, ""),
+			wi.sep(5, ""),
 		},
 	})
 end)
