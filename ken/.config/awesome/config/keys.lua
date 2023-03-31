@@ -119,7 +119,13 @@ fns.c_keys = {
     -- move to master
     move_to_master = function(c) c:swap(awful.client.getmaster()) end,
     -- move to screen
-    move_to_screen = function(c) c:move_to_screen() end,
+    move_to_screen = function(c)
+        local index = c.first_tag.index
+        c:move_to_screen()
+        local tag = c.screen.tags[index]
+        c:move_to_tag(tag)
+        --if tag then tag:view_only() end
+    end,
     -- keep on top
     keep_on_top = function(c) c.ontop = not c.ontop end,
     -- keep on top

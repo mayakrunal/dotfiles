@@ -22,6 +22,17 @@ return {
             placement = awful.placement.no_overlap + awful.placement
                     .no_offscreen,
         },
+        callback = function(c)
+            -- open steam games as floating fullscreen (games which require fullscreen will be fullscreen this way)
+            if string.find(c.class, "steam_app") or
+            string.find(c.instance, "steam_app") then
+                c.floating = true
+                c.maximized = true
+                c.fullscreen = true
+                c.titlebars_enabled = false
+                c.requests_no_titlebar = true
+            end
+        end
     },
     -- Floating clients.
     {
@@ -56,7 +67,7 @@ return {
         properties = { floating = true },
     },
     -- Add titlebars to normal clients and dialogs
-    { rule_any = { type = { "normal", "dialog" } },           properties = { titlebars_enabled = true }, },
+    { rule_any = { type = { "normal", "dialog" } },           properties = { titlebars_enabled = false }, },
     -- no titlebar rules
     {
         rule_any = { class = { "Alacritty", "Astrill", "Steam" } },
@@ -73,5 +84,14 @@ return {
     -- Tag 5 (games)
     { rule_any = { class = { "Steam" } },                     properties = { tag = tags[5].name } },
     -- Tag 6 (music)
-    { rule_any = { class = { "Spotify", "vlc", "Kodi" } },    properties = { tag = tags[6].name } },
+    {
+        rule_any = {
+            instance = { "spotify" },
+            class = { "Spotify", "vlc", "Kodi" },
+            name = { "Spotify" }
+        },
+        properties = { tag = tags[6].name }
+    },
+    -- Tag 7 (video record)
+    { rule_any = { class = { "obs" } }, properties = { tag = tags[7].name } },
 }

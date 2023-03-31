@@ -153,6 +153,7 @@ client.connect_signal("manage", function(c)
 end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
+-- for now all titlebars should be disabled anyways (they are ugly)
 client.connect_signal("request::titlebars", function(c)
 	awful.titlebar(c, { size = 20 }):setup(config
 		.titlebar.new(c))

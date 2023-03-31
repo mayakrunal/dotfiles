@@ -1,3 +1,4 @@
 {
-    "gitlens.telemetry.enabled": false
+    "gitlens.telemetry.enabled": false,
+    "cmake.configureOnOpen": false
 }

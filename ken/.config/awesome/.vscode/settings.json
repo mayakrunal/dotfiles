@@ -18,5 +18,6 @@
         "/usr/share/awesome/lib",
         "/usr/share/lua/5.3/freedesktop",
         "/usr/share/lua/5.3/lain",
-    ]
+    ],
+    "cmake.configureOnOpen": false
 }

@@ -46,8 +46,6 @@ theme.border_marked = "#91231c"
 --theme.taglist_bg_focus = "#ff0000"
 
 -- Generate taglist squares:
-local taglist_square_size = dpi(4)
-
 
 -- theme.taglist_squares_sel   = theme_assets.taglist_squares_sel(
 --         taglist_square_size, theme.fg_normal
@@ -61,6 +59,8 @@ theme.taglist_squares_unsel = gears.surface.load_from_shape(22, 2, gears.shape.r
                                                             theme.fg_normal)
 
 
+
+theme.systray_icon_spacing                      = 2
 -- Variables set for theming notifications:
 -- notification_font
 -- notification_[bg|fg]
@@ -72,7 +72,7 @@ theme.taglist_squares_unsel = gears.surface.load_from_shape(22, 2, gears.shape.r
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon                         = themes_path .. "default/submenu.png"
 theme.menu_height                               = dpi(15)
-theme.menu_width                                = dpi(100)
+theme.menu_width                                = dpi(200)
 
 -- You can add as many variables as
 -- you wish and access them by using
