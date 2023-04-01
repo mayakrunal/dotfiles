@@ -73,21 +73,21 @@ end
 --  widgets
 return {
     -- main launcher (single instance)
-    launcher = function()
+    launcher       = function()
         return awful.widget.launcher({ image = beautiful.awesome_icon, menu = awmenu })
     end,
     -- promptbox for each screen
-    promptbox = function() return awful.widget.prompt() end,
+    promptbox      = function() return awful.widget.prompt({ prompt = "| Run: " }) end,
     -- an imagebox widget which will contain an icon indicating which layout we're using.
     -- pass current screen as a parameter
-    layoutbox = function(s)
+    layoutbox      = function(s)
         local layout_box = awful.widget.layoutbox(s)
         --set mouse button mappings
         layout_box:buttons(buttons.layoutbox_buttons)
         return underline(layout_box, 5)
     end,
     -- tag list widget
-    taglist = function(s)
+    taglist        = function(s)
         -- Create a taglist widget
         return vmargin(awful.widget.taglist({
                            screen  = s,
@@ -102,7 +102,7 @@ return {
                        }), 5)
     end,
     --tasklist widget
-    tasklist = function(s)
+    tasklist       = function(s)
         -- Create a tasklist widget
         return vmargin(awful.widget.tasklist({
                            screen          = s,
@@ -153,9 +153,9 @@ return {
     -- Keyboard map indicator and switcher (single instance)
     keyboardlayout = awful.widget.keyboardlayout(),
     -- the system tray (single instance)
-    systray = vmargin(wibox.widget.systray(), 5),
+    systray        = vmargin(wibox.widget.systray(), 5),
     -- wibox (bar) all widgets needs to be setup on this
-    wibar = function(s)
+    wibar          = function(s)
         return awful.wibar(
             {
                 position = "top",
@@ -170,35 +170,43 @@ return {
         )
     end,
     -- battery
-    bat = underline(battery_widget({ show_current_level = true }), 5),
+    bat            = underline(battery_widget({ show_current_level = true }), 5),
     -- brightness
-    brightness = underline(brightness_widget {
-                               program = "brightnessctl",
-                               percentage = true,
-                               type = "icon_and_text"
-                           }, 5),
+    brightness     = underline(brightness_widget {
+                                   program = "brightnessctl",
+                                   percentage = true,
+                                   type = "icon_and_text"
+                               }, 5),
     -- calendar
-    calendar = underline(mytextclock, 5),
+    calendar       = underline(mytextclock, 5),
     -- cpu
-    cpu = underline(cpu_widget({ timeout = 2 }), 5),
+    cpu            = underline(cpu_widget({ timeout = 2 }), 5),
     -- mem
-    mem = underline(ram_widget({ timeout = 2 }), 5),
+    mem            = underline(ram_widget({ timeout = 2 }), 5),
     -- freespace
-    fs = underline(fs_widget({ mounts = { "/", "/home" } }), 5),
+    fs             = underline(fs_widget({ mounts = { "/", "/home" } }), 5),
     -- pacman updates
-    pacman = underline(pacman_widget({
-                           interval = 1800, -- Refresh every 10 minutes
-                           popup_bg_color = '#222222',
-                           popup_border_width = 1,
-                           popup_border_color = '#7e7e7e',
-                           popup_height = 10, -- 10 packages shown in scrollable window
-                           popup_width = 300,
-                           -- polkit_agent_path = '/usr/lib/xfce-polkit/xfce-polkit'
-                       }), 5),
-    sep = function(h, text)
+    pacman         = underline(pacman_widget({
+                                   interval = 1800, -- Refresh every 10 minutes
+                                   popup_bg_color = '#222222',
+                                   popup_border_width = 1,
+                                   popup_border_color = '#7e7e7e',
+                                   popup_height = 10, -- 10 packages shown in scrollable window
+                                   popup_width = 300,
+                                   -- polkit_agent_path = '/usr/lib/xfce-polkit/xfce-polkit'
+                               }), 5),
+    sep            = function(h, text)
         return hmargin(wibox.widget {
                            widget = wibox.widget.textbox,
                            text = text,
                        }, h)
+    end,
+    primary_sep    = function(h, text)
+        local sep = awful.widget.only_on_screen(hmargin(wibox.widget {
+                                                            widget = wibox.widget.textbox,
+                                                            text = text,
+                                                        }, h));
+        sep.screen = "primary"
+        return sep
     end
 }

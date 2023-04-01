@@ -22,7 +22,9 @@ local autostart = {
     --start picom
     compositor = "picom",
     --kwallet
-    kwallet = "/usr/lib/pam_kwallet_init"
+    kwallet = "/usr/lib/pam_kwallet_init",
+    --vpn
+    vpn = "astrill"
 }
 -- execute each one
 for key, cmd in pairs(autostart) do

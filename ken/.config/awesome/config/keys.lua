@@ -89,7 +89,7 @@ fns.g_keys = {
     -- lua execute prompt
     lua_exec_prompt = function()
         awful.prompt.run({
-            prompt = "Run Lua code: ",
+            prompt = "| Run Lua code: ",
             textbox = awful.screen.focused().mypromptbox.widget,
             exe_callback = awful.util.eval,
             history_path = awful.util.get_cache_dir() ..
@@ -124,7 +124,7 @@ fns.c_keys = {
         c:move_to_screen()
         local tag = c.screen.tags[index]
         c:move_to_tag(tag)
-        --if tag then tag:view_only() end
+        if tag then tag:view_only() end
     end,
     -- keep on top
     keep_on_top = function(c) c.ontop = not c.ontop end,

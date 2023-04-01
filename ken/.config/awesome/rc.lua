@@ -84,9 +84,7 @@ awful.screen.connect_for_each_screen(function(s)
 	-- Create the wibar
 	s.mywibar = config.widgets.wibar(s)
 
-	local function primary_sep()
-		if s == screen.primary then return wi.sep(5, "|") else return wi.sep(0, "") end
-	end
+
 
 	-- Add widgets to the wibar
 	s.mywibar:setup({
@@ -105,7 +103,7 @@ awful.screen.connect_for_each_screen(function(s)
 		{
 			-- Right widgets
 			layout = wibox.layout.fixed.horizontal,
-			primary_sep(),
+			wi.primary_sep(5, "|"),
 			wi.systray,
 			wi.sep(5, "|"),
 			wi.pacman,
