@@ -60,7 +60,11 @@ theme.taglist_squares_unsel = gears.surface.load_from_shape(22, 2, gears.shape.r
 
 
 
-theme.systray_icon_spacing                      = 2
+theme.systray_icon_spacing = 2
+
+theme.hotkeys_group_margin = 3
+
+
 -- Variables set for theming notifications:
 -- notification_font
 -- notification_[bg|fg]

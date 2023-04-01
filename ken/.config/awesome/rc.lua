@@ -5,22 +5,13 @@ local awesome, client, screen, root = awesome, client, screen, root
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
--- Standard awesome library
--- Utilities such as color parsing and objects
-local gears = require("gears")
-
 -- Everything related to window managment
 local awful = require("awful")
 require("awful.autofocus")
 
--- Widget and layout library
-local wibox      = require("wibox")
-
 -- Theme handling library
 local beautiful  = require("beautiful")
 
--- XDG Application menu implementation
-local menubar    = require("menubar")
 
 -- selected theme path
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua",
@@ -30,102 +21,27 @@ local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua",
 -- initiate the theme （make sure to init the theme first) before calling config
 beautiful.init(theme_path)
 
-local config = require("config")
-
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
-require("awful.hotkeys_popup.keys")
+require("awful.hotkeys_popup")
+require("awful.hotkeys_popup.keys.vim")
 
 -- start error handling
 require("errors")
 
+-- get my configuration
+local config           = require("config")
 
 
--- Set the terminal for applications that require it
-menubar.utils.terminal = config.vars.terminal
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts   = config.layouts
 
--- function to draw the wallpaper to the screen
-local set_wallpaper    = function(s)
-	-- Wallpaper
-	if beautiful.wallpaper then
-		local wallpaper = beautiful.wallpaper
-		-- If wallpaper is a function, call it with the screen
-		if type(wallpaper) == "function" then
-			wallpaper = wallpaper(s)
-		end
-		gears.wallpaper.maximized(wallpaper, s, true)
-	end
-end
-
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", set_wallpaper)
+screen.connect_signal("property::geometry", config.screen.set_wallpaper)
 
-awful.screen.connect_for_each_screen(function(s)
-	-- Wallpaper
-	set_wallpaper(s)
-
-	-- add the tags
-	-- Each screen has its own tag table.
-	for index, value in ipairs(config.tags) do
-		value.props.screen = s --set the current screen
-		awful.tag.add(value.name, value.props)
-	end
-	local wi = config.widgets
-
-	-- attach to screen so we can get it later for each screen
-	s.mypromptbox = wi.promptbox()
-	s.mytaglist = wi.taglist(s)
-	s.mytasklist = wi.tasklist(s)
-	s.mylayoutbox = wi.layoutbox(s)
-
-	-- Create the wibar
-	s.mywibar = config.widgets.wibar(s)
-
-
-
-	-- Add widgets to the wibar
-	s.mywibar:setup({
-		layout = wibox.layout.align.horizontal,
-		{
-			-- Left widgets
-			layout = wibox.layout.fixed.horizontal,
-			--config.widgets.launcher(),
-			wi.sep(5, ""),
-			s.mytaglist,
-			s.mypromptbox,
-			wi.sep(5, "|"),
-		},
-		-- Middle widget
-		s.mytasklist,
-		{
-			-- Right widgets
-			layout = wibox.layout.fixed.horizontal,
-			wi.primary_sep(5, "|"),
-			wi.systray,
-			wi.sep(5, "|"),
-			wi.pacman,
-			wi.sep(3, ""),
-			wi.fs,
-			wi.sep(3, ""),
-			wi.cpu,
-			wi.sep(3, ""),
-			wi.mem,
-			wi.sep(3, ""),
-			wi.brightness,
-			wi.sep(3, ""),
-			wi.bat,
-			wi.sep(3, ""),
-			--config.widgets.keyboardlayout,
-			wi.calendar,
-			wi.sep(3, ""),
-			s.mylayoutbox,
-			wi.sep(5, ""),
-		},
-	})
-end)
+-- set up screen for each screen
+awful.screen.connect_for_each_screen(config.screen.connect_for_each_screen)
 
 --  assign Mouse bindings for global buttons
 root.buttons(config.buttons.globals)

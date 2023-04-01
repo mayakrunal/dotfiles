@@ -1,19 +1,26 @@
 -- Everything related to window managment
-local awful = require("awful")
+local awful         = require("awful")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Theme handling library
-local beautiful = require("beautiful")
+local beautiful     = require("beautiful")
 -- our variables
-local vars = require("config.vars")
+local vars          = require("config.vars")
 
-local freedesktop = require("freedesktop")
+local freedesktop   = require("freedesktop")
 -- global c variable
-local awesome = awesome
+local awesome       = awesome
+
+
+--(This is for rare case in you use awful's menubar with mod + ctrl + shift + d) (right now we are using rofi)
+-- XDG Application menu implementation
+local menubar          = require("menubar")
+-- Set the terminal for applications that require it
+menubar.utils.terminal = vars.terminal
 
 -- menubar binding commands
-local menu_cmds = {
+local menu_cmds        = {
     -- function to show hotkeys
     hotkeys     = function() hotkeys_popup.show_help(nil, awful.screen.focused()) end,
     -- terminal editor command

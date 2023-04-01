@@ -25,7 +25,6 @@ copy_file() {
     SOURCE=$1
     DEST=$2
     if [ -f "$SOURCE" ]; then
-        echo "MAKE SURE DESTDIR EXISTS"
         mkdir -p "$DEST"
         echo "COPYING SOURCE:$SOURCE , TO DEST: $DEST "
         cp -a "$SOURCE" "$DEST"

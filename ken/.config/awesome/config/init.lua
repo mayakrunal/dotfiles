@@ -7,5 +7,6 @@ return {
     keys     = require("config.keys"),
     widgets  = require("config.widgets"),
     titlebar = require("config.titlebar"),
-    rules    = require("config.rules")
+    rules    = require("config.rules"),
+    screen   = require("config.screen"),
 }
