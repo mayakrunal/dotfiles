@@ -10,7 +10,7 @@ local awful = require("awful")
 require("awful.autofocus")
 
 -- Theme handling library
-local beautiful  = require("beautiful")
+local beautiful = require("beautiful")
 
 
 -- selected theme path
@@ -30,12 +30,12 @@ require("awful.hotkeys_popup.keys.vim")
 require("errors")
 
 -- get my configuration
-local config           = require("config")
+local config = require("config")
 
 
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
-awful.layout.layouts   = config.layouts
+awful.layout.layouts = config.layouts
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", config.screen.set_wallpaper)

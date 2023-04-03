@@ -56,6 +56,7 @@ local function margin(widget, left, right, top, bottom, border)
                                   dpi(bottom),
                                   border)
 end
+
 local function vmargin(widget, v)
     return margin(widget, 0, 0, v, v, nil)
 end

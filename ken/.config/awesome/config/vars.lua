@@ -17,8 +17,6 @@ return {
     shiftkey          = "Shift",
     -- rofi launcher
     rofi_drun         = "rofi -show drun",
-    -- gaps between clients in tags
-    client_gap        = 2,
     -- rofi window nav
     rofi_wnav         = "rofi -show",
     -- browser
@@ -30,17 +28,24 @@ return {
     -- my power menu
     powermenu         = "rofi -show powermenu -modi powermenu:~/.config/rofi/scripts/rofi-power-menu",
     -- screen layout
-    screenlayout      =
-    "rofi -show screenlayout -modi screenlayout:~/.config/rofi/scripts/rofi-screen-layout",
+    screenlayout      = "rofi -show screenlayout -modi screenlayout:~/.config/rofi/scripts/rofi-screen-layout",
     -- screen shot
     screenshot        = "spectacle",
     screenshot_region = "spectacle -r",
+    -- vpn
     vpn               = "astrill",
+    -- lockscreen command
     lockscreen        = "loginctl lock-session",
+    -- pulse mixer (pipewire)
     audiomixer        = "pavucontrol",
+    -- mute audio
     muteaudio         = "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    -- incrase audio
     increaseaudio     = "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+    -- decrease audio
     decreaseaudio     = "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+    -- brightness up
     brightnessup      = "brightnessctl set +5%",
+    -- brightness down
     brightnessdown    = "brightnessctl set 5%-",
 }

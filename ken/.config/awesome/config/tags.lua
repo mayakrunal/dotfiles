@@ -13,4 +13,5 @@ return {
     { name = "󱎓", props = { layout = awful.layout.suit.tile } }, --put games at floating avoid annoying fullscreen issues
     { name = "󰎈", props = { layout = awful.layout.suit.tile } },
     { name = "",  props = { layout = awful.layout.suit.tile } },
+    { name = "󰝇", props = { layout = awful.layout.suit.tile } },
 }

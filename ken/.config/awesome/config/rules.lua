@@ -93,5 +93,7 @@ return {
         properties = { tag = tags[6].name }
     },
     -- Tag 7 (video record)
-    { rule_any = { class = { "obs" } }, properties = { tag = tags[7].name } },
+    { rule_any = { class = { "obs" } },    properties = { tag = tags[7].name } },
+    -- Tag 8 (Notes)
+    { rule_any = { class = { "Joplin" } }, properties = { tag = tags[8].name } },
 }

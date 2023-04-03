@@ -10,7 +10,7 @@
         "continuation_indent": "8",
         "auto_collapse_lines": "true",
         "break_all_list_when_line_exceed": "true",
-        "max_line_length": "100"
+        "max_line_length": "120"
     },
     "Lua.completion.callSnippet": "Disable",
     "Lua.hint.setType": true,
