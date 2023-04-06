@@ -27,7 +27,7 @@ return {
             if string.find(c.class, "steam_app") or
             string.find(c.instance, "steam_app") then
                 c.floating = true
-                c.maximized = true
+                --c.maximized = true
                 c.fullscreen = true
                 c.titlebars_enabled = false
                 c.requests_no_titlebar = true
@@ -37,11 +37,9 @@ return {
     -- Floating clients.
     {
         rule_any = {
-            instance = {
-                "DTA",   -- Firefox addon DownThemAll.
-                "copyq", -- Includes session name in class.
-                "pinentry",
-            },
+            instance = { "DTA", -- Firefox addon DownThemAll.
+                "copyq",        -- Includes session name in class.
+                "pinentry", },
             class = {
                 "Arandr",
                 "Blueman-manager",
@@ -67,29 +65,22 @@ return {
         properties = { floating = true },
     },
     -- Add titlebars to normal clients and dialogs
-    { rule_any = { type = { "normal", "dialog" } },           properties = { titlebars_enabled = false }, },
+    { rule_any = { type = { "normal", "dialog" } },               properties = { titlebars_enabled = false }, },
     -- no titlebar rules
-    {
-        rule_any = { class = { "Alacritty", "Astrill", "Steam" } },
-        properties = { titlebars_enabled = false }
-    },
+    { rule_any = { class = { "Alacritty", "Astrill", "Steam" } }, properties = { titlebars_enabled = false } },
     -- Tag 1 (All browser related things)
-    { rule_any = { class = { "firefox" } },                   properties = { tag = tags[1].name } },
+    { rule_any = { class = { "firefox" } },                       properties = { tag = tags[1].name } },
     -- Tag 2 (terminals)
-    { rule_any = { class = { "Alacritty" } },                 properties = { tag = tags[2].name } },
+    { rule_any = { class = { "Alacritty" } },                     properties = { tag = tags[2].name } },
     -- Tag 3 (coding)
-    { rule_any = { class = { "Code", "jetbrains-idea-ce" } }, properties = { tag = tags[3].name } },
+    { rule_any = { class = { "Code", "jetbrains-idea-ce" } },     properties = { tag = tags[3].name } },
     -- Tag 4 (file browsers)
-    { rule_any = { class = { "Thunar", "dolphin" } },         properties = { tag = tags[4].name } },
+    { rule_any = { class = { "Thunar", "dolphin" } },             properties = { tag = tags[4].name } },
     -- Tag 5 (games)
-    { rule_any = { class = { "Steam" } },                     properties = { tag = tags[5].name } },
+    { rule_any = { class = { "Steam" } },                         properties = { tag = tags[5].name } },
     -- Tag 6 (music)
     {
-        rule_any = {
-            instance = { "spotify" },
-            class = { "Spotify", "vlc", "Kodi" },
-            name = { "Spotify" }
-        },
+        rule_any = { instance = { "spotify" }, class = { "Spotify", "vlc", "Kodi" }, name = { "Spotify" } },
         properties = { tag = tags[6].name }
     },
     -- Tag 7 (video record)
