@@ -69,15 +69,25 @@ return {
     -- no titlebar rules
     { rule_any = { class = { "Alacritty", "Astrill", "Steam" } }, properties = { titlebars_enabled = false } },
     -- Tag 1 (All browser related things)
-    { rule_any = { class = { "firefox" } },                       properties = { tag = tags[1].name } },
+    {
+        rule_any = { class = { "firefox" } },
+        properties = { tag = tags[1].name },
+        callback = function(c)
+            -- make picture in picture sticky and always on top
+            if c.role and c.role == "PictureInPicture" then
+                c.sticky = true
+                c.ontop = true
+            end
+        end
+    },
     -- Tag 2 (terminals)
-    { rule_any = { class = { "Alacritty" } },                     properties = { tag = tags[2].name } },
+    { rule_any = { class = { "Alacritty" } },                 properties = { tag = tags[2].name } },
     -- Tag 3 (coding)
-    { rule_any = { class = { "Code", "jetbrains-idea-ce" } },     properties = { tag = tags[3].name } },
+    { rule_any = { class = { "Code", "jetbrains-idea-ce" } }, properties = { tag = tags[3].name } },
     -- Tag 4 (file browsers)
-    { rule_any = { class = { "Thunar", "dolphin" } },             properties = { tag = tags[4].name } },
+    { rule_any = { class = { "Thunar", "dolphin" } },         properties = { tag = tags[4].name } },
     -- Tag 5 (games)
-    { rule_any = { class = { "Steam" } },                         properties = { tag = tags[5].name } },
+    { rule_any = { class = { "Steam" } },                     properties = { tag = tags[5].name } },
     -- Tag 6 (music)
     {
         rule_any = { instance = { "spotify" }, class = { "Spotify", "vlc", "Kodi" }, name = { "Spotify" } },

@@ -12,6 +12,9 @@ local vars            = require("config.vars")
 local awmenu          = require("config.menu")
 -- our tags
 local tags            = require("config.tags")
+-- scratchpad
+local scratchpad      = require("config.scratchpad")
+
 -- global c variables
 local awesome, client = awesome, client
 
@@ -102,6 +105,7 @@ fns.g_keys = {
     spawn_fun = function(cmd)
         return function() return awful.spawn(cmd) end
     end,
+    toggel_terminal_dd = function() scratchpad.terminal:toggle() end
 }
 
 
@@ -351,7 +355,11 @@ keys.globals = gears.table.join(
     awful.key({ vars.modkey, vars.altkey },
               "a",
               fns.g_keys.spawn_fun(vars.audiomixer), -- pavucontrol
-              { description = "open audio mixer", group = "launcher" })
+              { description = "open audio mixer", group = "launcher" }),
+    awful.key({ vars.modkey },
+              "period",
+              fns.g_keys.toggel_terminal_dd, -- terminal dropdown
+              { description = "open audio mixer", group = "scratchpad" })
 
 -- dont need this i find it better to use mod + num to switch to tag
 -- awful.key({ vars.modkey },
