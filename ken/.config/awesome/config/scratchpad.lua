@@ -1,19 +1,21 @@
-local lain     = require("lain")
+local lain = require("lain")
 
 -- require vars
-local vars     = require("config.vars")
-
-local terminal = lain.util.quake {
-    app       = vars.terminal,
-    name      = "TextScratchpad",
-    argname   = "-t TextScratchpad",
-    extra     = "--class TextScratchpad",
-    followtag = true,
-    vert      = "top",
-    horiz     = "center",
-    height    = 0.35,
-    width     = 0.9
-}
+local vars = require("config.vars")
 
 -- module table
-return { terminal = terminal }
+return {
+    terminal = function(name, s)
+        return lain.util.quake {
+            app     = vars.terminal,
+            name    = name,
+            argname = "-t " .. name,
+            extra   = "--class " .. name,
+            vert    = "top",
+            horiz   = "center",
+            height  = 0.35,
+            width   = 0.9,
+            screen  = s
+        }
+    end
+}

@@ -16,6 +16,7 @@ return {
             border_color = beautiful.border_normal,
             focus = awful.client.focus.filter,
             raise = true,
+            titlebars_enabled = false,
             keys = keys.client,
             buttons = buttons.client,
             screen = awful.screen.preferred,
@@ -51,6 +52,7 @@ return {
                 "Wpa_gui",
                 "veromix",
                 "xtightvncviewer",
+                "Pavucontrol"
             },
             -- Note that the name property shown in xprop might be set slightly after creation of the client
             -- and the name shown there might not match defined rules here.
@@ -64,10 +66,6 @@ return {
         },
         properties = { floating = true },
     },
-    -- Add titlebars to normal clients and dialogs
-    { rule_any = { type = { "normal", "dialog" } },               properties = { titlebars_enabled = false }, },
-    -- no titlebar rules
-    { rule_any = { class = { "Alacritty", "Astrill", "Steam" } }, properties = { titlebars_enabled = false } },
     -- Tag 1 (All browser related things)
     {
         rule_any = { class = { "firefox" } },

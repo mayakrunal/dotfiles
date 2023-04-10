@@ -12,8 +12,6 @@ local vars            = require("config.vars")
 local awmenu          = require("config.menu")
 -- our tags
 local tags            = require("config.tags")
--- scratchpad
-local scratchpad      = require("config.scratchpad")
 
 -- global c variables
 local awesome, client = awesome, client
@@ -105,7 +103,7 @@ fns.g_keys = {
     spawn_fun = function(cmd)
         return function() return awful.spawn(cmd) end
     end,
-    toggel_terminal_dd = function() scratchpad.terminal:toggle() end
+    toggel_terminal_dd = function() awful.screen.focused().dropdown_terminal:toggle() end
 }
 
 

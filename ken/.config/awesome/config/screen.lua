@@ -1,20 +1,20 @@
 -- Theme handling library
-local beautiful = require("beautiful")
+local beautiful  = require("beautiful")
 -- Standard awesome library
 -- Utilities such as color parsing and objects
-local gears     = require("gears")
--- widgets
-local wi        = require("config.widgets")
+local gears      = require("gears")
 -- Everything related to window managment
-local awful     = require("awful")
-
-local tags      = require("config.tags")
-
+local awful      = require("awful")
 -- Widget and layout library
-local wibox     = require("wibox")
+local wibox      = require("wibox")
+
+-- widgets
+local wi         = require("config.widgets")
+local tags       = require("config.tags")
+local scratchpad = require("config.scratchpad")
 
 -- module table
-local screen    = {}
+local screen     = {}
 
 
 -- function to draw the wallpaper to the screen
@@ -49,6 +49,9 @@ function screen.connect_for_each_screen(s)
 
     -- Create the wibar
     s.mywibar = wi.wibar(s)
+
+    --dropdown terminal
+    s.dropdown_terminal = scratchpad.terminal("dd_terminal_" .. s.index, s)
 
     -- Add widgets to the wibar
     s.mywibar:setup({
