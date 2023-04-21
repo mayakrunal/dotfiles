@@ -143,7 +143,7 @@ theme.awesome_icon                              = theme_assets.awesome_icon(
 theme.icon_theme                                = nil
 
 --theme.taglist_font                              = "CaskaydiaCove Nerd Font Mono, Extra Light 15"
-theme.taglist_font                              = "Nerd Hack Font 18"
+theme.taglist_font                              = "Nerd Hack Font Mono, Regular 20"
 
 return theme
 

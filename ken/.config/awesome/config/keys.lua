@@ -355,9 +355,9 @@ keys.globals = gears.table.join(
               fns.g_keys.spawn_fun(vars.audiomixer), -- pavucontrol
               { description = "open audio mixer", group = "launcher" }),
     awful.key({ vars.modkey },
-              "period",
+              "z",
               fns.g_keys.toggel_terminal_dd, -- terminal dropdown
-              { description = "open audio mixer", group = "scratchpad" })
+              { description = "open dropdown terminal", group = "scratchpad" })
 
 -- dont need this i find it better to use mod + num to switch to tag
 -- awful.key({ vars.modkey },

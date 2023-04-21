@@ -28,10 +28,8 @@ return {
             if string.find(c.class, "steam_app") or
             string.find(c.instance, "steam_app") then
                 c.floating = true
-                --c.maximized = true
+                c.maximized = true
                 c.fullscreen = true
-                c.titlebars_enabled = false
-                c.requests_no_titlebar = true
             end
         end
     },
@@ -52,7 +50,8 @@ return {
                 "Wpa_gui",
                 "veromix",
                 "xtightvncviewer",
-                "Pavucontrol"
+                "Pavucontrol",
+                "Nitrogen"
             },
             -- Note that the name property shown in xprop might be set slightly after creation of the client
             -- and the name shown there might not match defined rules here.
@@ -68,7 +67,7 @@ return {
     },
     -- Tag 1 (All browser related things)
     {
-        rule_any = { class = { "firefox" } },
+        rule_any = { class = { "firefox", "Chromium", "Microsoft-edge" } },
         properties = { tag = tags[1].name },
         callback = function(c)
             -- make picture in picture sticky and always on top
@@ -79,20 +78,36 @@ return {
         end
     },
     -- Tag 2 (terminals)
-    { rule_any = { class = { "Alacritty" } },                 properties = { tag = tags[2].name } },
+    { rule_any = { class = { "Alacritty" } },                                         properties = { tag = tags[2].name } },
     -- Tag 3 (coding)
-    { rule_any = { class = { "Code", "jetbrains-idea-ce" } }, properties = { tag = tags[3].name } },
+    { rule_any = { class = { "Code", "jetbrains-idea-ce", "jetbrains-pycharm-ce" } }, properties = { tag = tags[3].name } },
     -- Tag 4 (file browsers)
-    { rule_any = { class = { "Thunar", "dolphin" } },         properties = { tag = tags[4].name } },
+    { rule_any = { class = { "Thunar", "dolphin" } },                                 properties = { tag = tags[4].name } },
     -- Tag 5 (games)
-    { rule_any = { class = { "Steam" } },                     properties = { tag = tags[5].name } },
+    { rule_any = { class = { "Steam" } },                                             properties = { tag = tags[5].name } },
     -- Tag 6 (music)
     {
         rule_any = { instance = { "spotify" }, class = { "Spotify", "vlc", "Kodi" }, name = { "Spotify" } },
         properties = { tag = tags[6].name }
     },
     -- Tag 7 (video record)
-    { rule_any = { class = { "obs" } },    properties = { tag = tags[7].name } },
+    { rule_any = { class = { "obs" } }, properties = { tag = tags[7]
+            .name } },
     -- Tag 8 (Notes)
-    { rule_any = { class = { "Joplin" } }, properties = { tag = tags[8].name } },
+    {
+        rule_any = { class = { "Joplin", "libreoffice-startcenter", "libreoffice-writer" } },
+        properties = { tag = tags[8].name }
+    },
+    -- Tag 9 (Chats)
+    {
+        rule_any = { class = { "discord", "Skype", "fmd.exe", "YACReaderLibrary", "YACReader" } },
+        properties = { tag = tags[9].name },
+        callback = function(c)
+            if c.class and c.class == "fmd.exe" then
+                c.floating             = true
+                c.titlebars_enabled    = true
+                c.requests_no_titlebar = false
+            end
+        end
+    },
 }
