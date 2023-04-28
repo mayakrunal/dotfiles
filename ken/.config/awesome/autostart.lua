@@ -24,7 +24,10 @@ local autostart = {
     --kwallet
     kwallet = "/usr/lib/pam_kwallet_init",
     --vpn
-    vpn = "astrill"
+    vpn = "astrill",
+    --discord
+    discord = "discord",
+    skype = "skypeforlinux"
 }
 -- execute each one
 for key, cmd in pairs(autostart) do

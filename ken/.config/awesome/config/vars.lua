@@ -22,7 +22,7 @@ return {
     -- browser
     browser           = "firefox",
     -- file browser
-    filexplorer       = "thunar",
+    filexplorer       = "dolphin",
     -- code editor
     vscode            = "code",
     -- my power menu
