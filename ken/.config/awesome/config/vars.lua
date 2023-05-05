@@ -20,7 +20,7 @@ return {
     -- rofi window nav
     rofi_wnav         = "rofi -show",
     -- browser
-    browser           = "firefox",
+    browser           = "firefox-developer-edition",
     -- file browser
     filexplorer       = "dolphin",
     -- code editor

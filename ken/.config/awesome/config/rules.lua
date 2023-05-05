@@ -67,7 +67,7 @@ return {
     },
     -- Tag 1 (All browser related things)
     {
-        rule_any = { class = { "firefox", "Chromium", "Microsoft-edge" } },
+        rule_any = { class = { "firefox", "firefoxdeveloperedition", "Chromium", "Microsoft-edge" } },
         properties = { tag = tags[1].name },
         callback = function(c)
             -- make picture in picture sticky and always on top
