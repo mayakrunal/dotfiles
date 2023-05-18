@@ -1,25 +1,5 @@
 #!/bin/sh
-#configure machine for ssh (make it easy if you are running it into vm)
-sudo pacman -S openssh
-sudo systemctl enable sshd.service
-sudo systemctl start --now sshd.service
 
-#on client side also install ssh & login to machine using
-ssh user@ip
-
-#pacman settings
-sudo nvim /etc/pacman.conf #uncomment color,VerbosePkgLists,ParrallelDownloads && enable multilib repo
-
-#update mirror list
-sudo reflector --protocol https --country 'China,Japan' --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
-
-#create user directories in home
-sudo pacman -S xdg-user-dirs
-
-#install yay
-git clone https://aur.archlinux.org/yay-bin.git
-cd yay-bin
-makepkg -si
 
 #install xorg
 sudo pacman -S xorg

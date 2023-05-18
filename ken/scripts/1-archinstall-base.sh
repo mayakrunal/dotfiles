@@ -59,6 +59,9 @@ genfstab -U /mnt >>/mnt/etc/fstab
 #arch-chroot into new system
 arch-chroot /mnt
 
+#update mirror list
+sudo reflector --protocol https --country 'China,Japan' --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+
 #settimezone
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 hwclock --systohc
@@ -71,17 +74,17 @@ echo "LANG=en_US.UTF-8" >>/etc/locale.conf
 #localhostname
 echo "vm-arch-kde" >>/etc/hostname
 nvim /etc/hosts
-##127.0.0.1	localhost
-##::1		localhost
-##127.0.1.1	myhostname.localdomain	myhostname
+# #127.0.0.1	localhost
+# #::1		localhost
+# #127.0.1.1	myhostname.localdomain	myhostname
 
 #set root password
 passwd #vm@123
 
 #remaining essential tools
-pacman -S grub grub-btrfs inotify-tools efibootmgr base-devel linux-headers os-prober reflector git mtools
+pacman -S grub grub-btrfs inotify-tools efibootmgr base-devel linux-headers os-prober reflector git mtools xdg-user-dirs net-tools
 
-#add btrfs moudle to mkinitcpio
+# add btrfs moudle to mkinitcpio
 nvim /etc/mkinitcpi.conf
 
 #recreate the image
@@ -94,8 +97,8 @@ nvim /etc/nsswitch.conf #this is for avahi
 #change host line as below
 #hosts: mymachines mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] files myhostname dns
 
-#add user & add to sudo (wheel) group
-useradd-mG wheel vm
+# add user & add to sudo (wheel) group
+useradd -mG wheel vm
 passwd vm          #vm@123
 EDITOR=nvim visudo #umcommment %wheel ALL=(ALL) ALL
 
@@ -110,6 +113,22 @@ systemctl enable NetworkManager
 systemctl enable bluetooth
 systemctl enable cups
 systemctl enable avahi-daemon.service
+
+#configure machine for ssh (make it easy if you are running it into vm)
+sudo pacman -S openssh
+sudo systemctl enable sshd.service
+sudo systemctl start --now sshd.service
+
+#on client side also install ssh & login to machine using
+ssh user@ip
+
+#pacman settings
+sudo nvim /etc/pacman.conf #uncomment color,VerbosePkgLists,ParrallelDownloads && enable multilib repo
+
+#install yay
+git clone https://aur.archlinux.org/yay-bin.git
+cd yay-bin
+makepkg -si
 
 #unmount all drives & reboot
 exit
