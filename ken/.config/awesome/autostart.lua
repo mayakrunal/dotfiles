@@ -26,8 +26,8 @@ local autostart = {
     --vpn
     vpn = "astrill",
     --discord
-    discord = "discord",
-    skype = "skypeforlinux"
+    --discord = "discord",
+    --skype = "skypeforlinux"
 }
 -- execute each one
 for key, cmd in pairs(autostart) do

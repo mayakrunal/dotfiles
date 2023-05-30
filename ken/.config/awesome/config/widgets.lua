@@ -194,7 +194,7 @@ return {
                                    popup_border_color = '#7e7e7e',
                                    popup_height = 10, -- 10 packages shown in scrollable window
                                    popup_width = 300,
-                                   -- polkit_agent_path = '/usr/lib/xfce-polkit/xfce-polkit'
+                                   --polkit_agent_path = '/usr/lib/xfce-polkit/xfce-polkit'
                                }), 5),
     sep            = function(h, text)
         return hmargin(wibox.widget {

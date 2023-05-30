@@ -1,0 +1,137 @@
+{
+    "hyprland/submap": {
+        "format": "{}"
+    },
+    "wlr/workspaces": {
+        "disable-scroll": true,
+        "on-click": "activate",
+        "all-outputs": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1": " ¹",
+            "2": " ²",
+            "3": " ³",
+            "4": "󱧷 ⁴",
+            "5": "󰺵 ⁵",
+            "6": "󰎈 ⁶",
+            "7": " ⁷",
+            "8": "󰝇 ⁸",
+            "9": "󰭹 ⁹",
+            "10": " ¹",
+            "11": " ²",
+            "12": " ³",
+            "13": "󱧷 ⁴",
+            "14": "󰺵 ⁵",
+            "15": "󰎈 ⁶",
+            "16": " ⁷",
+            "17": "󰝇 ⁸",
+            "18": "󰭹 ⁹",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        },
+        "on-scroll-up": "hyprctl dispatch workspace m-1 > /dev/null",
+        "on-scroll-down": "hyprctl dispatch workspace m+1 > /dev/null"
+    },
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": false,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        "spacing": 10,
+        "show-passive-items": true
+    },
+    "clock": {
+        "format": "{:%Y-%m-%d %a %I:%M %p}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": true,
+        "on-click": "alacritty -e htop"
+    },
+    "memory": {
+        "format": "{}% 󰍛",
+        "on-click": "alacritty -e htop"
+    },
+    "backlight": {
+        "format": "{percent}% {icon}",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% 󰂄",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        "format-icons": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+        ]
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "󰋎",
+            "headset": "󰋎",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        },
+        "on-click": "pavucontrol"
+    },
+    "wlr/taskbar": {
+        "format": "{icon} {title}",
+        "icon-size": 14,
+        "all-outputs": false,
+        "tooltip-format": "{title}",
+        "on-click": "minimize-raise",
+        "on-click-middle": "close",
+        "app_ids-mapping": {
+            "firefoxdeveloperedition": "firefox-developer-edition"
+        }
+    },
+    "hyprland/window": {
+        "format": "{}",
+        "separate-outputs": true
+    }
+}

@@ -131,11 +131,7 @@ local function worker(user_args)
                         if string.find(line, "warning") then
                             naughty.notify({ title = "Warning!", text = line, timeout = 0 })
                         else
-                            naughty.notify({
-                                preset = naughty.config.presets.critical,
-                                title = "Error!",
-                                text = line,
-                            })
+                            naughty.notify({ preset = naughty.config.presets.critical, title = "Error!", text = line, })
                         end
                     end
                 end,
@@ -165,15 +161,15 @@ local function worker(user_args)
                                                      {
                                                          markup = "<b>" ..
                                                                  (upgrading and "Upgrading " .. #upgrades_tbl .. " Packages" or
-                                                                 (#upgrades_tbl == 0 and "No" or #upgrades_tbl) .. " Available Upgrades") ..
+                                                                     (#upgrades_tbl == 0 and "No" or #upgrades_tbl) .. " Available Upgrades") ..
                                                                  "</b>",
                                                          layout = wibox.widget.textbox,
                                                      },
                                                      #upgrades_tbl > 0 and {
                                                          upgr_btn,
-                                                         valign =
-                                                         "center",
-                                                         layout = wibox.container.place,
+                                                         valign = "center",
+                                                         layout = wibox
+                                                                 .container.place,
                                                      },
                                                      expand = "none",
                                                      layout = wibox.layout.align.horizontal,
@@ -189,30 +185,20 @@ local function worker(user_args)
                                                      if v == rows.children[i].get_txt() then goto continue end
                                                  end
                                                  local row = wibox.widget {
-                                                     {
-                                                         id = "idx",
-                                                         text = tostring(k),
-                                                         widget = wibox
-                                                                 .widget.textbox
-                                                     },
+                                                     { id = "idx", text = tostring(k), widget = wibox.widget.textbox },
                                                      {
                                                          id = "txt",
                                                          text = v,
                                                          forced_height = popup_row_height,
                                                          paddings = 1,
-                                                         widget = wibox.widget.textbox
+                                                         widget =
+                                                                 wibox.widget.textbox
                                                      },
                                                      layout = wibox.layout.ratio.horizontal,
                                                  }
-                                                 function row.get_txt()
-                                                     return row
-                                                             :get_children_by_id("txt")[1].text
-                                                 end
+                                                 function row.get_txt() return row:get_children_by_id("txt")[1].text end
 
-                                                 function row.set_idx(idx)
-                                                     row:get_children_by_id(
-                                                         "idx")[1]:set_text(idx)
-                                                 end
+                                                 function row.set_idx(idx) row:get_children_by_id("idx")[1]:set_text(idx) end
 
                                                  row:ajust_ratio(2, 0.1, 0.9, 0)
                                                  rows:insert(k, row)
@@ -220,8 +206,7 @@ local function worker(user_args)
                                              end
 
                                              local height = popup_header_height +
-                                                     math.min(#upgrades_tbl, _config.popup_height) *
-                                                     popup_row_height
+                                                     math.min(#upgrades_tbl, _config.popup_height) * popup_row_height
                                              popup:setup {
                                                  {
                                                      {
@@ -230,8 +215,8 @@ local function worker(user_args)
                                                                  header,
                                                                  rows,
                                                                  forced_height = height,
-                                                                 layout =
-                                                                         wibox.layout.fixed.vertical
+                                                                 layout = wibox
+                                                                         .layout.fixed.vertical
                                                              },
                                                              content_fill_horizontal = true,
                                                              layout = wibox.container.place

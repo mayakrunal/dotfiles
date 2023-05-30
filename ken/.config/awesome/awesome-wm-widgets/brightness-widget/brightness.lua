@@ -25,12 +25,7 @@ local dec_brightness_cmd
 local brightness_widget = {}
 
 local function show_warning(message)
-    naughty.notify({
-        preset = naughty.config.presets.critical,
-        title = "Brightness Widget",
-        text =
-                message,
-    })
+    naughty.notify({ preset = naughty.config.presets.critical, title = "Brightness Widget", text = message, })
 end
 
 local function worker(user_args)
@@ -110,10 +105,7 @@ local function worker(user_args)
     end
 
     local update_widget = function(widget, stdout, _, _, _)
-        local brightness_level = tonumber(string.format("%.0f", stdout))
-        if program == "brightnessctl" then
-            brightness_level = brightness_level / 1200
-        end
+        local brightness_level = tonumber(string.format("%.0f", stdout)) / 1200
         current_level = brightness_level
         widget:set_value(brightness_level)
     end

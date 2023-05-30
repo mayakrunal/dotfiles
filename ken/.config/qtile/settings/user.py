@@ -10,7 +10,7 @@ class UserValue:
     audiomixer: str = "pavucontrol"
     windownav: str = "rofi -show"
     browser: str = "firefox"
-    fileexplorer: str = "thunar"
+    fileexplorer: str = "dolphin"
     vscode: str = "code"
     terminal: str = "alacritty"
     terminal_fish: str = "alacritty -e /bin/fish"

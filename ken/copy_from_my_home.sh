@@ -39,9 +39,11 @@ config=("/awesome"
     "/conky"
     "/jgmenu"
     "/lf"
-    #   "/nvim"
+    "/nvim"
     "/qtile"
     "/picom"
+    "/hypr"
+    "/waybar"
     "/rofi")
 
 for FOLDER in "${config[@]}"; do

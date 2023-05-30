@@ -33,7 +33,7 @@ KP = {
 groups = [
     Group(name="1",
           label="󰖟¹",
-          matches=[Match(wm_class=["firefox"])]),
+          matches=[Match(wm_class=["firefox","firefoxdeveloperedition"])]),
     Group(name="2",
           label="²",
           matches=[Match(wm_class=["Alacritty"])]),

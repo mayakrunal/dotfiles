@@ -51,12 +51,13 @@ return {
                 "veromix",
                 "xtightvncviewer",
                 "Pavucontrol",
-                "Nitrogen"
+                "Nitrogen",
+                "Astrill"
             },
             -- Note that the name property shown in xprop might be set slightly after creation of the client
             -- and the name shown there might not match defined rules here.
             name = { "Event Tester", -- xev.
-            },
+                "Astrill Log" },
             role = {
                 "AlarmWindow",   -- Thunderbird's calendar.
                 "ConfigManager", -- Thunderbird's about:config.
