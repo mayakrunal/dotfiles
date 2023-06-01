@@ -12,7 +12,7 @@ nnoremap <leader>t <cmd>belowright split term://zsh<cr>
 
 " Neo Tree bindings
 nnoremap <leader>/ <cmd>Neotree reveal<cr>
-
+nnoremap <leader>. <cmd>Neotree git_status float toggle<cr>
 
 " Telescope shortcuts 
 " Find files using Telescope command-line sugar.
