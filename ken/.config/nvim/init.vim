@@ -2,7 +2,7 @@ let mapleader = " "         " Set leader key to space
 set number                  " Line numbers
 set relativenumber          " Relative numbers
 set nocompatible	        " disable comptibility to old-time vi
-"set showmatch		        " show matching
+set showmatch		        " show matching
 set ignorecase		        " case insensitive
 set mouse=v	    	        " middle click paste
 set hlsearch		        " highlight search
@@ -18,6 +18,7 @@ syntax on		            " syntax highlighting
 set mouse=a		            " enable mouseclick
 " set cursorline		    " highlight current curosor line
 set ttyfast		            " speed up scrolling in vim
+
 
 " Plugins for neovim 
 call plug#begin()
@@ -61,17 +62,30 @@ call plug#begin()
 
     " One dark theme
     Plug 'navarasu/onedark.nvim'
+
+    " LSP Support
+    Plug 'neovim/nvim-lspconfig'                           " Required
+    Plug 'williamboman/mason.nvim', {'do': ':MasonUpdate'} " Optional
+    Plug 'williamboman/mason-lspconfig.nvim'               " Optional
+
+    " Autocompletion
+    Plug 'hrsh7th/nvim-cmp'     " Required
+    Plug 'hrsh7th/cmp-nvim-lsp' " Required
+    Plug 'L3MON4D3/LuaSnip'     " Required
+
+    Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v2.x'}
     
 
 call plug#end()
 
-" souce the configurations that are in separate files
-" source nerdtree.vim
-source ~/.config/nvim/airline.vim
-" source coc_func.vim
-source ~/.config/nvim/neotree.lua
-source ~/.config/nvim/keybindings.vim
-
 let g:onedark_config = {'style': 'deep',}
 
 colorscheme onedark
+
+
+" souce the configurations that are in separate files
+source ~/.config/nvim/airline.vim
+source ~/.config/nvim/neotree.lua
+source ~/.config/nvim/nvim-treesitter.lua
+source ~/.config/nvim/lsp.lua
+source ~/.config/nvim/keybindings.vim

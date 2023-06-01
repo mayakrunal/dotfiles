@@ -32,7 +32,7 @@ copy_file() {
         echo "SOURCE: $SOURCE DOES NOT EXISTS"
     fi
 }
-
+echo
 # config folders
 config=("/awesome"
     "/alacritty"
