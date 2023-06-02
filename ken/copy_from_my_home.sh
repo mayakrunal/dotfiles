@@ -53,6 +53,15 @@ for FOLDER in "${config[@]}"; do
     copy_folder "$SOURCE" "$DEST"
 done
 
+home=("/vimwiki")
+
+for FOLDER in "${home[@]}"; do
+
+    SOURCE=$HOME_DIR$FOLDER
+    DEST=$GIT_DIR$FOLDER
+    copy_folder "$SOURCE" "$DEST"
+done
+
 #profile files
 profiles=(
     "/.bash_profile"

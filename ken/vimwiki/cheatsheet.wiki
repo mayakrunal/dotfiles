@@ -1,0 +1,241 @@
+= CheatSheet =
+
+
+  == Global ==
+  
+     * :h[elp] keyword      -       Open help for keyword
+     * :sav[eas] file       -       save file as
+     * :clo[se]             -       close current pane
+     * :ter[minal]          -       open a terminal window
+     * K                    -       open man page for word under the cursor 
+
+  == Navigation ==
+
+     === Arrow Keys ===
+     
+         * h j k l           -       Arrow Keys
+         * <C-U> / <C-D>     -       Half PageUp/Down
+         * <C-B> / <C-F>     -       PageUp/Down
+
+     === Words ===
+    
+         * b / w             -       Previous / Next word
+         * ge / e            -       Previous/next end of word
+    
+     === Line ===
+    
+         * 0                 -       Start of Line
+         * ^                 -       Start of line (after white space)
+         * $                 -       End of line
+    
+     === Character ===
+    
+         * fc                -       Go forward to Character
+         * Fc                -       Go backward to Character
+    
+     === Document === 
+    
+         * gg                -       First Line
+         * G                 -       Last Line
+         * :{number}         -       Go to Line {number}
+         * {number}G         -       Go to line {number}
+         * {number}j / Down  -       Go down lines {number}
+         * {number}k / Up    -       Go up lines {number}
+    
+     === Window ===
+    
+         * zz                -       Center this line
+         * zt                -       Top this line
+         * zb                -       Bottom this line
+         * H                 -       Move to top of screen
+         * M                 -       Move to middle of screen
+         * L                 -       Move to bottom of screen
+    
+     === Search ===
+    
+         * n                 -       Next matching search pattern
+         * N                 -       Previous Match
+         * *                 -       Next whole word under cursor
+         * #                 -       Previous whole word under cursor
+    
+     === Jumping ===
+      
+         * <C-o>             -       Go back to previous location
+         * <C-i>             -       Go forward
+         * gf                -       Go to file in cursor
+     
+     === Code navigation ===
+    
+         * %                 -       Nearest / matching {[()]}
+         * [( [{ [<          -       Previous ( or { or <
+         * ])                -       Next
+         * [m                -       Previous method start
+         * [M                -       Previous method end
+        
+        
+  == Editing ==
+
+     * a                  -       Append
+     * A                  -       Append from end of line
+     * i                  -       Insert
+     * o                  -       Add line below
+     * O                  -       Add line above
+     * s                  -       Delete char and insert
+     * S                  -       Delete line and insert
+     * C                  -       Delete until end of line and insert
+     * r                  -       Replace one character
+     * R                  -       Enter Replace Mode
+     * u                  -       undo changes
+     * <C-R>              -       Redo changes
+  
+  
+  == Visual Mode ==
+    
+     * v                  -       Enter visual Mode
+     * V                  -       Enter visual line mode
+     * <C-V>              -       Enter Visual block mode
+    
+     === In Visual Mode ===
+      
+         * d / x             -       Delete selection
+         * s                 -       Replace selection
+         * y                 -       Yank selection (copy)
+  
+  
+  == Exiting ==
+   
+     * :q                 -       Close file
+     * :qa                -       Close all files
+     * :w                 -       Save
+     * :wq                -       Save and close file
+     * ZZ                 -       Save and quit
+     * ZQ                 -       Quite without saving
+
+
+  == Exiting Insert Mode ==
+  
+     * Esc / <C-[>        -       exit insert mode
+     * <C-C>              -       Exit insert mode and abort the current command
+
+
+  == Clipboard ==
+    
+     * x                  -       Delete character
+     * dd                 -       Delete the line
+     * yy                 -       yank the line (copy)
+     * p                  -       Paste
+     * P                  -       paste before
+     * "+p                -       paste from system clipboard
+     * "+y                -       Paste to system clipboard
+
+  
+  == Find and Replace ==
+  
+     * :%s/foo/bar/g      -       Replace foo with bar in the whole document 
+  
+  
+  == Operators ==
+    
+     === Usage ===
+    
+         * Op -  Motion       -      Press the Operator then motion
+  
+     === Operator list ===
+    
+         * d                   -       Delete
+         * y                   -       Yank (copy)
+         * c                   -       change (Delete then insert)
+         * >                   -       Indent right
+         * <                   -       Indent left
+         * =                   -       Auto indent
+         * g~                  -       Swap case
+         * gU                  -       Upper case
+         * gu                  -       lower case
+         * !                   -       Filter through external program
+      
+     === Example list ===
+    
+         * dd                  -       delete current line
+         * dw                  -       delete to next word
+         * diw                 -       delete inner word
+         * db                  -       delete to beginning of the word
+         * 2dd                 -       delete 2 lines
+         * dip                 -       delete a text object (inside paragraph)
+         * d                   -       delete selection in visual mode
+       
+         
+  == Text Objects ==
+         
+     === Usage === 
+          
+         * v i p               -       operator, inside or around ,text object
+       
+     === Text object ===
+    
+         * p                   -       paragraph
+         * w                   -       word
+         * s                   -       sentence
+         * [ ( { <             -       A [],() pr {} or <> block
+         * ' "                 -       A quoted string
+         * b                   -       block [(
+         * B                   -       A block in [{
+         * t                   -       a xml tag
+    
+     === Examples ===
+    
+         * vip                 -       select paragraph
+         * vipipipip           -       select more
+         * yip                 -       yank inner paragraph
+         * yap                 -       yank paragraph (including newline)
+         * dip                 -       delete inner paragraph
+         * cip                 -       change inner paragraph
+
+
+  == Folds ==
+     
+     * zo / zO              -       Open / Open recursively
+     * zc / zC              -       Close / Close recursively
+     * za / zA              -       Toggle / Toggle recursively
+     * zv                   -       Open folds for this line
+     * zM                   -       Close All
+     * zR                   -       Open All
+     * zm                   -       Fold more (fold level +=1)
+     * zr                   -       Fold less (fold less  -=1)
+     * zx                   -       update folds
+ 
+ 
+  == Misc ==
+  
+     * .                    -       Repeat last command
+     * ]p                   -       Paste under current indentation level
+     * :set ff=unix         -       convert windows line endings to unix line endings
+ 
+ 
+  == Spell checking ==
+  
+     * :set spell spelllang=en_us   -   Turn on us english spell checking
+     * :set nospell                 -   Turn off spell checking
+     * ]s                           -   move to next misplled word after the cursor
+     * [s                           -   move to prev misplled word before the cursor
+     * z=                           -   suggest spelling for word under the cursor
+     * zg                           -   add word to spell list
+     * zw                           -   mark word as bad / mispelled
+     * zu / C-X (insertmode)        -   suggest work for bad word
+ 
+ 
+  == Code Completion (Navigation in code) ==
+  
+     === LSP Buffer is active ===
+         
+         * K                        -   Buffer Hover
+         * gd                       -   go to definition
+         * gD                       -   go to declartion
+         * gi                       -   go to implementation
+         * go                       -   go to type definition
+         * gr                       -   go to reference
+         * gs                       -   signature help
+         * <F2>                     -   Rename the variable
+         * <F3>                     -   Format the file
+         * <F4>                     -   code action
+         * gl                       -   Diagnostic open float
+           
