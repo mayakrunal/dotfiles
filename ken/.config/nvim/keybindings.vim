@@ -7,12 +7,12 @@
 
 " Terminal bindings
 :tnoremap <Esc> <C-\><C-n>
-nnoremap <leader>t <cmd>belowright split term://zsh<cr>
+nnoremap <A-t> <cmd>belowright split term://zsh<cr>
 
 
 " Neo Tree bindings
-nnoremap <leader>/ <cmd>Neotree reveal<cr>
-nnoremap <leader>. <cmd>Neotree git_status float toggle<cr>
+nnoremap <A-n><A-t> <cmd>Neotree reveal toggle<cr>
+nnoremap <A-n><A-g> <cmd>Neotree git_status float toggle<cr>
 
 " Telescope shortcuts 
 " Find files using Telescope command-line sugar.

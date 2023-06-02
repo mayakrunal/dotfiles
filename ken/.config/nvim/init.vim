@@ -34,19 +34,12 @@ call plug#begin()
     Plug 'vim-airline/vim-airline'                      " status bar
     Plug 'vim-airline/vim-airline-themes'               " Air line themes
     
-    
     Plug 'ap/vim-css-color'                             " Preview CSS colors
     Plug 'mg979/vim-visual-multi', {'branch': 'master'} " Multi curosor ctrl + N
     Plug 'preservim/tagbar'                             " Tagbar on right side for code navigation
     
-    " Plug 'neoclide/coc.nvim', {'branch': 'release'}     " Code completion
-    
     Plug 'farmergreg/vim-lastplace'                     " Remeber the last place for file if you reopen it
    
-    " NerdTree Stuff
-    " Plug 'preservim/nerdtree'                           " File explorer in nvim
-    " Plug 'ryanoasis/vim-devicons'                       " Developers Icons
-
     " Telescope setup
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
@@ -62,7 +55,6 @@ call plug#begin()
 
     " One dark theme
     Plug 'navarasu/onedark.nvim'
-
     " LSP Support
     Plug 'neovim/nvim-lspconfig'                           " Required
     Plug 'williamboman/mason.nvim', {'do': ':MasonUpdate'} " Optional
@@ -74,10 +66,19 @@ call plug#begin()
     Plug 'L3MON4D3/LuaSnip'     " Required
 
     Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v2.x'}
-    
+
+    " Debug Adapter protocol for debugging capabilities
+    Plug 'mfussenegger/nvim-dap'
+    " Debug Adapter protocol ui
+    Plug 'rcarriga/nvim-dap-ui'
+    " go debugger
+    Plug 'leoluz/nvim-dap-go'  
+    " python debugger
+    Plug 'mfussenegger/nvim-dap-python'
 
 call plug#end()
 
+let g:tagbar_position = 'left'
 let g:onedark_config = {'style': 'deep',}
 
 colorscheme onedark
@@ -88,4 +89,5 @@ source ~/.config/nvim/airline.vim
 source ~/.config/nvim/neotree.lua
 source ~/.config/nvim/nvim-treesitter.lua
 source ~/.config/nvim/lsp.lua
+source ~/.config/nvim/dap.lua
 source ~/.config/nvim/keybindings.vim
