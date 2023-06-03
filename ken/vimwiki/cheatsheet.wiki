@@ -30,9 +30,13 @@
     
      === Character ===
     
-         * fc                -       Go forward to Character
-         * Fc                -       Go backward to Character
-    
+         * f{c}              -       Go forward to Character
+         * F{c}              -       Go backward to Character
+         * t{c}              -       Go till to character
+         * T{c}              -       Go backward till to character
+         * ;                 -       repeat previous f, t, F or T movement
+         * ,                 -       repeat previous f, t, F or T movement, backwards 
+     
      === Document === 
     
          * gg                -       First Line
@@ -228,8 +232,8 @@
      === LSP Buffer is active ===
          
          * K                        -   Buffer Hover
-         * gd                       -   go to definition
-         * gD                       -   go to declartion
+         * gd                       -   go to local declaration
+         * gD                       -   go to global declartion
          * gi                       -   go to implementation
          * go                       -   go to type definition
          * gr                       -   go to reference

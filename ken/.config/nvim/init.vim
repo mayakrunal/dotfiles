@@ -8,7 +8,7 @@ set mouse=v	    	        " middle click paste
 set hlsearch		        " highlight search
 set incsearch		        " incremental search
 set tabstop=4		        " number of column occcupied by a tab
-set softtabstop=4	        " see multiple spaces as tabstops
+" set softtabstop=4	        " see multiple spaces as tabstops
 set expandtab		        " converts tabs to whitespace
 set smarttab                " use smarttabs 
 set shiftwidth=4	        " width for autoindents

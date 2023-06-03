@@ -12,7 +12,7 @@ nnoremap <A-t> <cmd>belowright split term://zsh<cr>
 
 " Neo Tree bindings
 nnoremap <A-n><A-t> <cmd>Neotree reveal toggle<cr>
-nnoremap <A-n><A-g> <cmd>Neotree git_status float toggle<cr>
+nnoremap <A-n><A-b> <cmd>Neotree buffers float toggle<cr>
 
 " Telescope shortcuts 
 " Find files using Telescope command-line sugar.
@@ -21,6 +21,12 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
+" Copy & Paste from system clipboard
+nnoremap <leader><leader>p "+p
+nnoremap <leader><leader>y "+y
+
+" clear highlight
+nnoremap <C-l> <cmd>noh<cr>
 
 """""""""""""""""""     Window Navigation """""""""""""""""
 " Open Tag Bar
