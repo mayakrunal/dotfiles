@@ -71,6 +71,7 @@ function M.setup()
                         nvimtree = true,
                         leap = true,
                         mason = true,
+                        which_key = true,
                         dap = {
                             enabled = true,
                             enable_ui = true, -- enable nvim-dap-ui
@@ -241,6 +242,22 @@ function M.setup()
                 require("config.lsp").setup()
             end
         }
+        use {
+            "windwp/nvim-autopairs",
+            requires = {
+                'VonHeikemen/lsp-zero.nvim'
+            },
+            config = function()
+                require("nvim-autopairs").setup {}
+                -- If you want insert `(` after select function or method item
+                local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+                local cmp = require('cmp')
+                cmp.event:on(
+                    'confirm_done',
+                    cmp_autopairs.on_confirm_done()
+                )
+            end
+        }
 
         use { "rcarriga/nvim-dap-ui",
             requires = {
@@ -253,6 +270,8 @@ function M.setup()
                 require("config.dapconf").setup()
             end
         }
+
+
 
         if packer_bootstrap then
             print "Restart Neovim required after installation!"

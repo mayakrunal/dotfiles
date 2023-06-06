@@ -25,6 +25,7 @@ function M.setup()
         view = {
             number = true,
             relativenumber = true,
+						width = 40
         },
         filters = {
             custom = { ".git" },

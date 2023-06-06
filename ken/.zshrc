@@ -78,7 +78,7 @@ plugins=(git nvm colored-man-pages command-not-found pip themes zsh-interactive-
 
 # FZF settings
 export FZF_BASE="$HOME/.fzf"
-export FZF_DEFAULT_COMMAND='fd --hidden --color=always'
+export FZF_DEFAULT_COMMAND="fd --hidden --exclude='.git' --exclude='node_modules' --exclude='.gradle' --exclude='.settings' --color=always"
 export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --border --ansi'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 # Preview file content using bat (https://github.com/sharkdp/bat)
@@ -90,12 +90,12 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
-	fd --hidden --follow --exclude ".git" . "$1"
+	fd --hidden --follow --exclude=".git" --exclude="node_modules" --exclude=".gradle" --exclude=".settings" . "$1"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-	fd --type d --hidden --follow --exclude ".git" . "$1"
+	fd --type d --hidden --follow --exclude=".git" --exclude="node_modules" --exclude=".gradle" --exclude=".settings" . "$1"
 }
 
 # Advanced customization of fzf options via _fzf_comprun function

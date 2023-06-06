@@ -22,8 +22,8 @@ keymap("v", ">", ">gv", default_opts)
 keymap("v", "p", '"_dP', default_opts)
 
 -- Switch buffer
-keymap("n", "<A-PageDown>", ":bprevious<CR>", default_opts)
-keymap("n", "<A-PageUp>", ":bnext<CR>", default_opts)
+keymap("n", "<A-Left>", ":bprevious<CR>", default_opts)
+keymap("n", "<A-Right>", ":bnext<CR>", default_opts)
 
 -- Cancel search highlighting with Control - L
 keymap("n", "<C-l>", ":nohlsearch<Bar>:echo<CR>", default_opts)
@@ -43,7 +43,7 @@ keymap("n", "<A-S-Up>", ":resize -1<CR>", default_opts)
 keymap("n", "<A-S-Down>", ":resize +1<CR>", default_opts)
 
 -- move in windows
-keymap("n", "<A-Left>", "<C-w><C-w>", default_opts)
-keymap("n", "<A-Right>", "<C-w><S-w>", default_opts)
+-- keymap("n", "<A-Left>", "<C-w><C-w>", default_opts)
+-- keymap("n", "<A-Right>", "<C-w><S-w>", default_opts)
 keymap("n", "<A-Up>", "<C-w><C-w>", default_opts)
 keymap("n", "<A-Down>", "<C-w><S-w>", default_opts)
